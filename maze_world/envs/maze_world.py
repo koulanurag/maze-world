@@ -152,7 +152,7 @@ class MazeWorldEnv(gym.Env):
         if self.window is None and self.render_mode == "human":
             pygame.init()
             pygame.display.init()
-            pygame.display.set_caption(f'Maze - {self.maze_width} x {self.maze_height}')
+            pygame.display.set_caption(f"Maze - {self.maze_width} x {self.maze_height}")
             self.window = pygame.display.set_mode(self.window_size)
         if self.clock is None and self.render_mode == "human":
             self.clock = pygame.time.Clock()

@@ -37,7 +37,7 @@ def main(args):
         done = terminated or truncated
 
     print("Environment finished.")
-    imageio.mimwrite(os.path.join(args.output_dir, args.env + '.gif'), pics[:args.frames], fps=args.fps)
+    imageio.mimwrite(os.path.join(args.output_dir, args.env + '.gif'), pics[:args.frames], fps=args.fps, loop=0)
 
 
 if __name__ == "__main__":

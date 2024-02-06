@@ -1,5 +1,6 @@
 # maze-world
-It's a collection of multi agent environments based on OpenAI gym. Also, you can use [**minimal-marl**](https://github.com/koulanurag/minimal-marl) to warm-start training of agents.
+
+Random maze environments with different size and complexity for reinforcement learning research.
 
 ![Python package](https://github.com/koulanurag/maze-world/workflows/Python%20package/badge.svg)
 ![Python Version](https://img.shields.io/pypi/pyversions/maze-world)
@@ -40,4 +41,25 @@ env.close()
 - Install: ```pip install -e ".[test]" ```
 - Run: ```pytest```
 
+## Environments Zoo!
 
+<table>
+<tr>
+<td>RandomMaze-11x11-v0</td>
+<td>RandomMaze-21x21-v0</td>
+</tr>
+<tr>
+<td><img src="/static/RandomMaze-11x11-v0.gif" alt="RandomMAze-11x11-v0.gif" width="200"/></td>
+<td><img src="/static/RandomMaze-21x21-v0.gif" alt="RandomMAze-21x21-v0.gif" width="200"/></td>
+</tr>
+<tr>
+<td>RandomMaze-31x31-v0</td>
+<td>RandomMaze-101x101-v0</td>
+</tr>
+<tr>
+<td><img src="/static/RandomMaze-31x31-v0.gif" alt="RandomMAze-11x11-v0.gif" width="200"/></td>
+<td><img src="/static/RandomMaze-101x101-v0.gif" alt="RandomMAze-21x21-v0.gif" width="200"/></td>
+</tr>
+<tr>
+</tr>
+</table>

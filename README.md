@@ -25,7 +25,7 @@ Random maze environments with different size and complexity for reinforcement le
 ```python
 import gymnasium as gym
 
-env = gym.make("maze-world:RandomMaze-10x10-v0", render_mode="human")
+env = gym.make("maze-world:RandomMaze-11x11-v0", render_mode="human")
 terminated, truncated = False, False
 observation, info = env.reset(seed=0, options={})
 episode_score = 0.

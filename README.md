@@ -42,6 +42,7 @@ Random maze environments with different size and complexity for reinforcement le
 ## Usage:
 
 1. Basics:
+
     ```python
     import gymnasium as gym
     
@@ -49,14 +50,17 @@ Random maze environments with different size and complexity for reinforcement le
     terminated, truncated = False, False
     observation, info = env.reset(seed=0, options={})
     episode_score = 0.
+   
     while not (terminated or truncated):
         action = env.action_space.sample()
         observation, reward, terminated, truncated, info = env.step(action)
         episode_score += reward
+   
     env.close()
     
     ```
-2. Creating Custom Size Random Maze:
+2. Creating custom size random maze:
+
   ```python
     import gymnasium as gym
     import maze_world
@@ -74,7 +78,7 @@ Random maze environments with different size and complexity for reinforcement le
     )
     env = gym.make("maze_world:RandomMaze-7x7-v0")
   ```
-3. Creating Specific Maze Map:
+3. Creating maze with pre-specified map:
 
   ```python
     import gymnasium as gym

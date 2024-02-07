@@ -4,12 +4,14 @@ from .maze import MazeEnv
 
 
 class RandomMazeEnv(MazeEnv):
-    def __init__(self,
-                 render_mode: str = None,
-                 maze_width: int = 11,
-                 maze_height: int = 11,
-                 maze_complexity: float = 0.75,
-                 maze_density: float = 0.75, ):
+    def __init__(
+        self,
+        render_mode: str = None,
+        maze_width: int = 11,
+        maze_height: int = 11,
+        maze_complexity: float = 0.75,
+        maze_density: float = 0.75,
+    ):
 
         if maze_width % 2 == 0 or maze_height % 2 == 0:
             raise ValueError("width/height of maze should be odd")
@@ -20,19 +22,25 @@ class RandomMazeEnv(MazeEnv):
         self.maze_density = maze_density
 
         def _generate_maze():
-            maze_config = self.generate_maze(width=maze_width,
-                                             height=maze_height,
-                                             complexity=maze_complexity,
-                                             density=maze_density)
+            maze_config = self.generate_maze(
+                width=maze_width,
+                height=maze_height,
+                complexity=maze_complexity,
+                density=maze_density,
+            )
             agent_location = np.array([1, 1])
-            target_location = np.array([maze_config.shape[0] - 2, maze_config.shape[1] - 2])
+            target_location = np.array(
+                [maze_config.shape[0] - 2, maze_config.shape[1] - 2]
+            )
             return maze_config, agent_location, target_location
 
-        MazeEnv.__init__(self,
-                         render_mode=render_mode,
-                         generate_maze_fn=_generate_maze,
-                         maze_width=maze_width,
-                         maze_height=maze_height)
+        MazeEnv.__init__(
+            self,
+            render_mode=render_mode,
+            generate_maze_fn=_generate_maze,
+            maze_width=maze_width,
+            maze_height=maze_height,
+        )
 
     def generate_maze(self, width=81, height=51, complexity=0.75, density=0.75):
         r"""Generate a random maze array.

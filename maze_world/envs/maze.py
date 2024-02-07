@@ -8,11 +8,11 @@ class MazeEnv(gym.Env):
     metadata = {"render_modes": ["human", "rgb_array"], "render_fps": 4}
 
     def __init__(
-            self,
-            generate_maze_fn,
-            render_mode: str = None,
-            maze_width: int = None,
-            maze_height: int = None,
+        self,
+        generate_maze_fn,
+        render_mode: str = None,
+        maze_width: int = None,
+        maze_height: int = None,
     ):
         self.generate_maze_fn = generate_maze_fn
         self.maze_width = maze_width
@@ -89,9 +89,13 @@ class MazeEnv(gym.Env):
 
         # generate a maze:
         self._prev_agent_location = None
-        self.maze_map, self._agent_location, self._target_location = self.generate_maze_fn()
+        self.maze_map, self._agent_location, self._target_location = (
+            self.generate_maze_fn()
+        )
         if not np.array_equal(self.maze_map.shape, [self.maze_width, self.maze_height]):
-            raise ValueError("Shape of Generated Maze doesn't match with specified maze width and height")
+            raise ValueError(
+                "Shape of Generated Maze doesn't match with specified maze width and height"
+            )
 
         # return initial parameters
         observation = self._get_obs()
@@ -119,7 +123,7 @@ class MazeEnv(gym.Env):
                 new_agent_location,
             )
             if np.array_equal(
-                    self._agent_location, self._target_location
+                self._agent_location, self._target_location
             ):  # goal location check
                 reward = +1  # reward for reaching goal location
                 terminated = True

@@ -11,8 +11,8 @@ class MazeEnv(gym.Env):
         self,
         generate_maze_fn,
         render_mode: str = None,
-        maze_width: int = None,
-        maze_height: int = None,
+        maze_width: int = None,  # columns
+        maze_height: int = None,  # rows
     ):
         self.generate_maze_fn = generate_maze_fn
         self.maze_width = maze_width
@@ -53,10 +53,10 @@ class MazeEnv(gym.Env):
         I.e. 0 corresponds to "right", 1 to "up" etc.
         """
         self._action_to_direction = {
-            0: np.array([1, 0]),
-            1: np.array([0, 1]),
-            2: np.array([-1, 0]),
-            3: np.array([0, -1]),
+            0: np.array([0, 1]),  # right
+            1: np.array([-1, 0]),  # up
+            2: np.array([0, -1]),  # left
+            3: np.array([1, 0]),  # down
         }
 
         assert render_mode is None or render_mode in self.metadata["render_modes"]
@@ -92,9 +92,13 @@ class MazeEnv(gym.Env):
         self.maze_map, self._agent_location, self._target_location = (
             self.generate_maze_fn()
         )
-        if not np.array_equal(self.maze_map.shape, [self.maze_width, self.maze_height]):
+        if not np.array_equal(self.maze_map.shape, [self.maze_height, self.maze_width]):
             raise ValueError(
-                "Shape of Generated Maze doesn't match with specified maze width and height"
+                f"Shape of Generated Maze doesn't match with"
+                f" specified maze width and height."
+                f" Generate maze shape is {self.maze_map.shape}, "
+                f"whereas specified maze width is {self.maze_width}"
+                f" and height is {self.maze_height}"
             )
 
         # return initial parameters
@@ -157,14 +161,14 @@ class MazeEnv(gym.Env):
             self.canvas.fill((255, 255, 255))
 
             # draw walls
-            for x in range(self.maze_width):
-                for y in range(self.maze_height):
+            for x in range(self.maze_height):
+                for y in range(self.maze_width):
                     if self.maze_map[x, y] == 1:
                         pygame.draw.rect(
                             self.canvas,
                             (169, 169, 169),
                             pygame.Rect(
-                                np.array([x, y]) * self.window_pixel_size,
+                                np.array([y,x]) * self.window_pixel_size,
                                 (self.window_pixel_size, self.window_pixel_size),
                             ),
                         )
@@ -174,7 +178,7 @@ class MazeEnv(gym.Env):
                 self.canvas,
                 (255, 0, 0),
                 pygame.Rect(
-                    self._target_location * self.window_pixel_size,
+                    self._target_location[::-1] * self.window_pixel_size,
                     (self.window_pixel_size, self.window_pixel_size),
                 ),
             )
@@ -184,14 +188,14 @@ class MazeEnv(gym.Env):
             pygame.draw.circle(
                 self.canvas,
                 (255, 255, 255),
-                (self._prev_agent_location + 0.5) * self.window_pixel_size,
+                (self._prev_agent_location[::-1] + 0.5) * self.window_pixel_size,
                 self.window_pixel_size / 4,
             )
         # Draw new agent location
         pygame.draw.circle(
             self.canvas,
             (0, 0, 255),
-            (self._agent_location + 0.5) * self.window_pixel_size,
+            (self._agent_location[::-1] + 0.5) * self.window_pixel_size,
             self.window_pixel_size / 4,
         )
 
@@ -210,6 +214,17 @@ class MazeEnv(gym.Env):
             )
 
     def close(self):
+        """
+        Retrieves queries for the environment.
+        """
         if self.window is not None:
             pygame.display.quit()
             pygame.quit()
+
+
+ACTION_MEANING = {
+    0: "Left",
+    1: "Up",
+    2: "Right",
+    3: "Down",
+}

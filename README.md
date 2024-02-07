@@ -102,7 +102,7 @@ Random maze environments with different size and complexity for reinforcement le
 
     gym.envs.register(
         id='UMaze-v0',
-        entry_point='maze_world.envs:MazeWorldEnv',
+        entry_point='maze_world.envs:MazeEnv',
         max_episode_steps=200,
         kwargs={
             "generate_maze_fn": _generate_maze_fn,

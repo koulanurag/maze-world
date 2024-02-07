@@ -1,1 +1,2 @@
-from .maze_world import MazeWorldEnv
+from .maze import MazeEnv
+from .random_maze import RandomMazeEnv

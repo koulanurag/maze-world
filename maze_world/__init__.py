@@ -6,7 +6,7 @@ logger = logging.getLogger(__name__)
 
 register(
     id="RandomMaze-11x11-v0",
-    entry_point="maze_world.envs:MazeWorldEnv",
+    entry_point="maze_world.envs:RandomMazeEnv",
     max_episode_steps=200,
     kwargs={
         "maze_width": 11,
@@ -18,7 +18,7 @@ register(
 
 register(
     id="RandomMaze-21x21-v0",
-    entry_point="maze_world.envs:MazeWorldEnv",
+    entry_point="maze_world.envs:RandomMazeEnv",
     max_episode_steps=400,
     kwargs={
         "maze_width": 21,
@@ -30,7 +30,7 @@ register(
 
 register(
     id="RandomMaze-31x31-v0",
-    entry_point="maze_world.envs:MazeWorldEnv",
+    entry_point="maze_world.envs:RandomMazeEnv",
     max_episode_steps=400,
     kwargs={
         "maze_width": 31,
@@ -42,7 +42,7 @@ register(
 
 register(
     id="RandomMaze-101x101-v0",
-    entry_point="maze_world.envs:MazeWorldEnv",
+    entry_point="maze_world.envs:RandomMazeEnv",
     max_episode_steps=1000,
     kwargs={
         "maze_width": 101,

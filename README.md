@@ -41,23 +41,80 @@ Random maze environments with different size and complexity for reinforcement le
 
 ## Usage:
 
-```python
-import gymnasium as gym
+1. Basics:
+    ```python
+    import gymnasium as gym
+    
+    env = gym.make("maze-world:RandomMaze-11x11-v0", render_mode="human")
+    terminated, truncated = False, False
+    observation, info = env.reset(seed=0, options={})
+    episode_score = 0.
+    while not (terminated or truncated):
+        action = env.action_space.sample()
+        observation, reward, terminated, truncated, info = env.step(action)
+        episode_score += reward
+    env.close()
+    
+    ```
+2. Creating Custom Size Random Maze:
+  ```python
+    import gymnasium as gym
+    import maze_world
+    
+    gym.envs.register(
+        id='RandomMaze-7x7-v0',
+        entry_point='maze_world.envs:RandomMazeEnv',
+        max_episode_steps=200,
+        kwargs={
+            "maze_width": 7,
+            "maze_height": 7,
+            "maze_complexity": 1,
+            "maze_density": 1,
+        },
+    )
+    env = gym.make("maze_world:RandomMaze-7x7-v0")
+  ```
+3. Creating Specific Maze Map:
 
-env = gym.make("maze-world:RandomMaze-11x11-v0", render_mode="human")
-terminated, truncated = False, False
-observation, info = env.reset(seed=0, options={})
-episode_score = 0.
-while not (terminated or truncated):
-    action = env.action_space.sample()
-    observation, reward, terminated, truncated, info = env.step(action)
-    episode_score += reward
-env.close()
+  ```python
+    import gymnasium as gym
 
-```
+    def _generate_maze_fn():
+        # This function would be called on every reset
+    
+        maze_map = [[1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+                    [1, 0, 0, 0, 0, 0, 0, 0, 0, 1]
+                    [1, 0, 0, 0, 0, 0, 0, 0, 0, 1]
+                    [1, 1, 1, 1, 1, 1, 1, 0, 0, 1]
+                    [1, 1, 1, 1, 1, 1, 1, 0, 0, 1]
+                    [1, 1, 1, 1, 1, 1, 1, 0, 0, 1]
+                    [1, 0, 0, 0, 0, 0, 0, 0, 0, 1]
+                    [1, 0, 0, 0, 0, 0, 0, 0, 0, 1]
+                    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]]
+        agent_loc = [1, 1]
+        target_loc = [1, 7]
+        return maze_map, agent_loc, target_loc
 
+
+    gym.envs.register(
+        id='UMaze-v0',
+        entry_point='maze_world.envs:MazeWorldEnv',
+        max_episode_steps=200,
+        kwargs={
+            "generate_maze_fn": _generate_maze_fn,
+            "maze_height": 9,
+            "maze_wwidth": 9,
+        },
+    )
+    env = gym.make("maze_world:UMaze-v0")
+  ```
 ## Testing:
 
 - Install: ```pip install -e ".[test]" ```
 - Run: ```pytest```
 
+## Development:
+
+If you would like to develop it further; begin by installing following:
+
+```pip install -e ".[develop]" ```

@@ -5,7 +5,22 @@ from setuptools import setup
 
 extras = {
     "test": ["pytest<8.0.0", "pytest_cases"],
-    "develop": ["black", "imageio"],
+    "develop": ["black", "imageio", "jupyter"],
+    "docs": [
+        "Sphinx<6.0,>=4.0",
+        "furo",
+        "sphinxcontrib-katex",
+        "sphinx-copybutton",
+        "sphinx_design",
+        "myst-parser",
+        "sphinx-autobuild",
+        "sphinxext-opengraph",
+        "sphinx-prompt",
+        "sphinx-favicon",
+        "nbsphinx>=0.9.3",
+        "pandoc>=2.3",
+        "myst-nb",
+    ],
 }
 
 # Meta dependency groups.

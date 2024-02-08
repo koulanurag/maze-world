@@ -1,0 +1,59 @@
+.google-slides-container {
+    position: relative;
+    width: 100%;
+    padding-top: 60%;
+    overflow: hidden;
+}
+
+.google-slides-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/*
+.tldr-section {
+    font-family: monospace;
+}
+
+.author-section {
+    font-family: monospace;
+}
+
+.author-section p {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.author-name {
+    font-weight: 400;
+}
+
+.autor-association {
+    font-weight: 200;
+}
+*/
+
+#abstract > p {
+    text-align: justify;
+}
+
+.source-code-container {
+    text-align: center;
+    padding: 14px 0px;
+}
+
+.source-code-container div {
+    font-size: 15px;
+    border: 1px solid rgb(201, 200, 200);
+    border-radius: 5px;
+    padding: 10px 25px;
+    font-family: monospace;
+    background: rgb(246, 245, 245);
+    display: inline-block;
+    margin: 0px 20px;
+
+}
+

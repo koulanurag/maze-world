@@ -1,3 +1,5 @@
+from copy import copy
+
 import gymnasium as gym
 import numpy as np
 import pygame
@@ -25,23 +27,19 @@ class MazeEnv(gym.Env):
             maze_height * self.window_pixel_size,
         )
 
-        # Observations are dictionaries with the agent's and the target's location.
-        # Each location is encoded as an element of {0, ..., `size`}^2, i.e. MultiDiscrete([size, size]).
-        self.observation_space = spaces.Dict(
-            {
-                "agent": spaces.Box(
-                    low=np.array([0, 0]),
-                    high=np.array([maze_width - 1, maze_height - 1]),
-                    shape=(2,),
-                    dtype=int,
-                ),
-                "target": spaces.Box(
-                    low=np.array([0, 0]),
-                    high=np.array([maze_width - 1, maze_height - 1]),
-                    shape=(2,),
-                    dtype=int,
-                ),
-            }
+        # Id of the elements in 2d maze:
+        # 0 => floor
+        # 1 => wall
+        # 2 => agent
+        # 3 => target
+        self.observation_space = spaces.Box(
+            low=np.zeros((self.maze_height, self.maze_width)),
+            high=np.ones((self.maze_height, self.maze_width)) * 3,
+            shape=(
+                self.maze_height,
+                self.maze_width,
+            ),
+            dtype=int,
         )
 
         # We have 4 actions, corresponding to "right", "up", "left", "down"
@@ -74,13 +72,27 @@ class MazeEnv(gym.Env):
         self.clock = None
 
     def _get_obs(self):
-        return {"agent": self._agent_location, "target": self._target_location}
+        maze_map = copy(self.maze_map)
+        if not np.array_equal(self._agent_location, self._target_location):
+            maze_map[self._agent_location[0], self._agent_location[1]] = OBJECT_ID[
+                "agent"
+            ]
+            maze_map[self._target_location[0], self._target_location[1]] = OBJECT_ID[
+                "target"
+            ]
+        else:
+            maze_map[self._agent_location[0], self._agent_location[1]] = OBJECT_ID[
+                "agent_on_target"
+            ]
+        return maze_map
 
     def _get_info(self):
         return {
             "distance": np.linalg.norm(
                 self._agent_location - self._target_location, ord=1
-            )
+            ),
+            "agent": self._agent_location,
+            "target": self._target_location,
         }
 
     def reset(self, seed=None, options=None):
@@ -168,7 +180,7 @@ class MazeEnv(gym.Env):
                             self.canvas,
                             (169, 169, 169),
                             pygame.Rect(
-                                np.array([y,x]) * self.window_pixel_size,
+                                np.array([y, x]) * self.window_pixel_size,
                                 (self.window_pixel_size, self.window_pixel_size),
                             ),
                         )
@@ -228,3 +240,11 @@ ACTION_MEANING = {
     2: "Right",
     3: "Down",
 }
+OBSERVATION_MEANING = {
+    0: "empty",
+    1: "wall",
+    2: "agent",
+    3: "target",
+    4: "agent_on_target",
+}
+OBJECT_ID = {v: k for k, v in OBSERVATION_MEANING.items()}

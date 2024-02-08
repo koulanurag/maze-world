@@ -31,13 +31,13 @@ def env():
             "maze_width": 7,
         },
     )
-    env = gym.make("maze_world:EmptyMaze-v0", render_mode="human")
+    env = gym.make("maze_world:EmptyMaze-v0")
     yield env
     env.close()
 
 
 @pytest.mark.parametrize(
-    "step_actions,agent_positions,step_rewards, terminations, truncations",
+    "step_actions, agent_positions, target_position, step_rewards, terminations, truncations",
     [
         (
             [0, 1, 2, 3, 3, 2, 0, 0, 0, 0],
@@ -54,6 +54,7 @@ def env():
                 (3, 4),
                 (3, 5),
             ],
+            [3, 5],
             [-0.01, -1.0, -0.01, -0.01, -0.01, -1.0, -0.01, -0.01, -0.01, 1],
             [False, False, False, False, False, False, False, False, False, True],
             [False, False, False, False, False, False, False, False, False, False],
@@ -61,15 +62,28 @@ def env():
     ],
 )
 def test_empty_maze_steps(
-    env, step_actions, agent_positions, step_rewards, terminations, truncations
+    env,
+    step_actions,
+    agent_positions,
+    target_position,
+    step_rewards,
+    terminations,
+    truncations,
 ):
     observation, info = env.reset()
 
-    assert all(agent_positions[0] == observation["agent"])
+    assert all(agent_positions[0] == info["agent"])
     for step_i, action in enumerate(step_actions):
         next_observation, reward, terminated, truncated, info = env.step(action)
 
-        assert all(agent_positions[step_i + 1] == next_observation["agent"])
+        assert all(agent_positions[step_i + 1] == info["agent"])
+        assert all(target_position == info["target"])
+        if not terminated:
+            assert next_observation[info["agent"][0], info["agent"][1]] == 2
+            assert next_observation[info["target"][0], info["target"][1]] == 3
+        else:
+            assert next_observation[info["agent"][0], info["agent"][1]] == 4
+
         assert step_rewards[step_i] == reward
         assert terminations[step_i] == terminated
         assert truncations[step_i] == truncated

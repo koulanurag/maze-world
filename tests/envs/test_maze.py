@@ -15,14 +15,16 @@ def test_init(env_name):
     env = gym.make(f"maze_world:{env_name}")
     observation, info = env.reset()
 
-    assert all(observation["agent"] == [1, 1]), "initial agent position is not correct"
+    assert all(info["agent"] == [1, 1]), "initial agent position is not correct"
     assert all(
-        observation["target"]
+        info["target"]
         == [
             env.unwrapped.maze_width - 2,
             env.unwrapped.maze_height - 2,
         ]
     ), "target position is not correct"
+    assert observation[info["agent"][0], info["agent"][1]] == 2
+    assert observation[info["target"][0], info["target"][1]] == 3
 
     # rollout
     for step_i in range(5):
@@ -33,12 +35,14 @@ def test_init(env_name):
     observation, info = env.reset()
 
     assert all(
-        observation["agent"] == [1, 1]
+        info["agent"] == [1, 1]
     ), "initial agent position is not correct, after episode run and reset"
     assert all(
-        observation["target"]
+        info["target"]
         == [
             env.unwrapped.maze_width - 2,
             env.unwrapped.maze_height - 2,
         ]
     ), "target position is not correct, after episode run and reset"
+    assert observation[info["agent"][0], info["agent"][1]] == 2
+    assert observation[info["target"][0], info["target"][1]] == 3

@@ -40,15 +40,29 @@ def env():
     "step_actions,agent_positions,step_rewards, terminations, truncations",
     [
         (
-                [0, 1, 2, 3, 3, 2, 0, 0, 0, 0],
-                [(1, 1), (1, 2), (1, 2), (1, 1), (2, 1), (3, 1), (3, 1), (3, 2), (3, 3), (3, 4), (3, 5)],
-                [-0.01, -1.0, -0.01, -0.01, -0.01, -1.0, -0.01, -0.01, -0.01, 1],
-                [False, False, False, False, False, False, False, False, False, True],
-                [False, False, False, False, False, False, False, False, False, False],
+            [0, 1, 2, 3, 3, 2, 0, 0, 0, 0],
+            [
+                (1, 1),
+                (1, 2),
+                (1, 2),
+                (1, 1),
+                (2, 1),
+                (3, 1),
+                (3, 1),
+                (3, 2),
+                (3, 3),
+                (3, 4),
+                (3, 5),
+            ],
+            [-0.01, -1.0, -0.01, -0.01, -0.01, -1.0, -0.01, -0.01, -0.01, 1],
+            [False, False, False, False, False, False, False, False, False, True],
+            [False, False, False, False, False, False, False, False, False, False],
         )
     ],
 )
-def test_empty_maze_steps(env, step_actions, agent_positions, step_rewards, terminations, truncations):
+def test_empty_maze_steps(
+    env, step_actions, agent_positions, step_rewards, terminations, truncations
+):
     observation, info = env.reset()
 
     assert all(agent_positions[0] == observation["agent"])

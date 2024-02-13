@@ -17,6 +17,18 @@ register(
 )
 
 register(
+    id="RandomMaze-15x15-v0",
+    entry_point="maze_world.envs:RandomMazeEnv",
+    max_episode_steps=200,
+    kwargs={
+        "maze_width": 15,
+        "maze_height": 15,
+        "maze_complexity": 1,
+        "maze_density": 1,
+    },
+)
+
+register(
     id="RandomMaze-21x21-v0",
     entry_point="maze_world.envs:RandomMazeEnv",
     max_episode_steps=400,
@@ -35,6 +47,18 @@ register(
     kwargs={
         "maze_width": 31,
         "maze_height": 31,
+        "maze_complexity": 1,
+        "maze_density": 1,
+    },
+)
+
+register(
+    id="RandomMaze-51x51-v0",
+    entry_point="maze_world.envs:RandomMazeEnv",
+    max_episode_steps=500,
+    kwargs={
+        "maze_width": 51,
+        "maze_height": 51,
         "maze_complexity": 1,
         "maze_density": 1,
     },

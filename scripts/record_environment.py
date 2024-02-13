@@ -7,7 +7,7 @@ import os
 
 import gymnasium as gym
 import imageio
-
+from maze_world.utils import maze_dijkstra_solver
 
 def parse_arguments():
     parser = argparse.ArgumentParser(description="Record the environment.")
@@ -31,14 +31,21 @@ def main(args):
     env = gym.make("maze_world:" + args.env, render_mode="rgb_array")
     pics = []
 
-    env.reset()
+    observation, info = env.reset()
     step_count = 0
-    done = False
-    while not done and step_count < 50:
+
+    step_actions = maze_dijkstra_solver(
+        env.unwrapped.maze_map.astype(bool),
+        env.unwrapped._action_to_direction.values(),
+        info["agent"],
+        info["target"],
+    )
+
+    for action in step_actions:
         step_count += 1
         pics.append(env.render())
 
-        _, _, terminated, truncated, _ = env.step(env.action_space.sample())
+        _, _, terminated, truncated, _ = env.step(action)
         done = terminated or truncated
 
     print("Environment finished.")

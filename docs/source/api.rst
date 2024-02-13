@@ -17,6 +17,7 @@ API Reference
    :members:
    :undoc-members:
 
+
 .. automodule:: maze_world.envs
    :members:
    :undoc-members:

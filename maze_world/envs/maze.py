@@ -16,6 +16,7 @@ class MazeEnv(gym.Env):
         maze_width: int = None,  # columns
         maze_height: int = None,  # rows
     ):
+
         self.generate_maze_fn = generate_maze_fn
         self.maze_width = maze_width
         self.maze_height = maze_height
@@ -31,18 +32,36 @@ class MazeEnv(gym.Env):
         # 0 => floor
         # 1 => wall
         # 2 => agent
-        # 3 => target
-        self.observation_space = spaces.Box(
-            low=np.zeros((self.maze_height, self.maze_width)),
-            high=np.ones((self.maze_height, self.maze_width)) * 3,
-            shape=(
-                self.maze_height,
-                self.maze_width,
-            ),
-            dtype=int,
+        self.observation_space = spaces.Dict(
+            {
+                # 0 => floor
+                # 1 => wall
+                # 2 => agent
+                "agent": spaces.Box(
+                    low=np.zeros((self.maze_height, self.maze_width)),
+                    high=np.ones((self.maze_height, self.maze_width)) * 2,
+                    shape=(
+                        self.maze_height,
+                        self.maze_width,
+                    ),
+                    dtype=int,
+                ),
+                "target": spaces.Box(
+                    low=np.zeros((self.maze_height, self.maze_width)),
+                    high=np.ones((self.maze_height, self.maze_width)) * 2,
+                    shape=(
+                        self.maze_height,
+                        self.maze_width,
+                    ),
+                    dtype=int,
+                ),
+            }
         )
 
-        # We have 4 actions, corresponding to "right", "up", "left", "down"
+        """
+            We have 4 actions, corresponding to "right", "up", "left", "down"
+        """
+
         self.action_space = spaces.Discrete(4)
 
         """
@@ -72,19 +91,13 @@ class MazeEnv(gym.Env):
         self.clock = None
 
     def _get_obs(self):
-        maze_map = copy(self.maze_map)
-        if not np.array_equal(self._agent_location, self._target_location):
-            maze_map[self._agent_location[0], self._agent_location[1]] = OBJECT_ID[
-                "agent"
-            ]
-            maze_map[self._target_location[0], self._target_location[1]] = OBJECT_ID[
-                "target"
-            ]
-        else:
-            maze_map[self._agent_location[0], self._agent_location[1]] = OBJECT_ID[
-                "agent_on_target"
-            ]
-        return maze_map
+        agent_maze = copy(self.maze_map)
+        agent_maze[self._agent_location[0], self._agent_location[1]] = 2
+
+        target_maze = copy(self.maze_map)
+        target_maze[self._target_location[0], self._target_location[1]] = 2
+
+        return {"agent": agent_maze, "target": target_maze}
 
     def _get_info(self):
         return {

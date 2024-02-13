@@ -78,12 +78,8 @@ def test_empty_maze_steps(
 
         assert all(agent_positions[step_i + 1] == info["agent"])
         assert all(target_position == info["target"])
-        if not terminated:
-            assert next_observation[info["agent"][0], info["agent"][1]] == 2
-            assert next_observation[info["target"][0], info["target"][1]] == 3
-        else:
-            assert next_observation[info["agent"][0], info["agent"][1]] == 4
-
+        assert next_observation["agent"][info["agent"][0], info["agent"][1]] == 2
+        assert next_observation["target"][info["target"][0], info["target"][1]] == 2
         assert step_rewards[step_i] == reward
         assert terminations[step_i] == terminated
         assert truncations[step_i] == truncated

@@ -39,7 +39,7 @@ setup(
     author_email="koulanurag@gmail.com",
     license="MIT License",
     packages=setuptools.find_packages(),
-    install_requires=["gymnasium>=0.28", "pygame>=2.1.0"],
+    install_requires=["gymnasium>=0.28", "pygame>=2.1.0", "scipy"],
     extras_require=extras,
     tests_require=extras["test"],
     python_requires=">=3.6, <3.12",

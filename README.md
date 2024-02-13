@@ -57,7 +57,6 @@ Random maze environments with different size and complexity for reinforcement le
         episode_score += reward
    
     env.close()
-    
     ```
 2. Creating custom size random maze:
 

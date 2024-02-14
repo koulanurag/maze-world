@@ -8,7 +8,7 @@ from os.path import join
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate Markdown table for ReadMe")
-    parser.add_argument("--path", default="static/", help="Path (default: %(default)s)")
+    parser.add_argument("--path", default="docs/source/_static/gifs/", help="Path (default: %(default)s)")
     args = parser.parse_args()
 
     onlyfiles = [(f, join(args.path, f)) for f in sorted(listdir(args.path))]

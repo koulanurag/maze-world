@@ -25,10 +25,10 @@ def make_graph(impassable_array, motions):
         for motion in motions:
             next_idx = [idx[0] + motion[0], idx[1] + motion[1]]
             if (
-                    next_idx[0] >= 0
-                    and next_idx[0] < M
-                    and next_idx[1] >= 0
-                    and next_idx[1] < N
+                next_idx[0] >= 0
+                and next_idx[0] < M
+                and next_idx[1] >= 0
+                and next_idx[1] < N
             ) and not impassable_array[next_idx[0], next_idx[1]]:
                 row.append(node_idx)
                 col.append(

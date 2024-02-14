@@ -4,7 +4,7 @@ Environment Zoo
 
 .. raw:: html
 
-    <div style="text-align:center;">
+    <div style="justify-content: center;display: flex;">
       <table>
         <tr>
           <td><b>RandomMaze-11x11-v0</b></td>

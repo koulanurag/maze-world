@@ -6,9 +6,8 @@ Random maze environments with different size and complexity for reinforcement le
 ![Python Version](https://img.shields.io/pypi/pyversions/maze-world)
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/koulanurag/maze-world/blob/main/examples/colab_example.ipynb)
 
-<div style="border: 1px solid; display: block; padding: 10px; font-style: italic;">
-Disclaimer: This project is largely a amalgam of references mentioned <a href=#references>here</a>.
-</div>
+
+_Disclaimer: This project is largely a amalgam of references mentioned <a href=#references>here</a>._
 
 ## Installation
 

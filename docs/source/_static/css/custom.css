@@ -57,3 +57,7 @@
 
 }
 
+table.environment-zoo-table > tr, td {
+    border: 2px solid rgb(194, 194, 194);
+    border-collapse: collapse;
+}

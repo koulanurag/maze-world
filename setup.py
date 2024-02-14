@@ -20,6 +20,7 @@ extras = {
         "nbsphinx>=0.9.3",
         "pandoc>=2.3",
         "myst-nb",
+        "matplotlib"
     ],
 }
 

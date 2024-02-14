@@ -14,14 +14,14 @@ def parse_arguments():
     parser.add_argument(
         "--output_dir",
         type=str,
-        default="static/",
+        default="docs/source/_static/gifs/",
         help="Output directory with GIF record.",
     )
     parser.add_argument(
         "--env", type=str, help="Name of recorded environment.", required=True
     )
     parser.add_argument(
-        "--frames", type=int, default=100, help="Number of frames in GIF record."
+        "--frames", type=int, default=500, help="Number of frames in GIF record."
     )
     parser.add_argument("--fps", type=int, default=21, help="Frame per second.")
     return parser.parse_args()

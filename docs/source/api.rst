@@ -13,11 +13,19 @@ API Reference
    :target: https://codecov.io/gh/koulanurag/maze-world
    :alt: codecov
 
-.. automodule:: maze_world
-   :members:
-   :undoc-members:
 
+Environment
+-----------
 
 .. automodule:: maze_world.envs
    :members:
    :undoc-members:
+   :imported-members:
+
+Utils
+-----
+.. automodule:: maze_world.utils
+   :members:
+   :undoc-members:
+   :imported-members:
+

@@ -7,7 +7,9 @@ import os
 
 import gymnasium as gym
 import imageio
+
 from maze_world.utils import maze_dijkstra_solver
+
 
 def parse_arguments():
     parser = argparse.ArgumentParser(description="Record the environment.")
@@ -23,6 +25,9 @@ def parse_arguments():
     parser.add_argument(
         "--frames", type=int, default=500, help="Number of frames in GIF record."
     )
+    parser.add_argument(
+        "--num-episodes", type=int, default=5, help="Number of frames in GIF record."
+    )
     parser.add_argument("--fps", type=int, default=21, help="Frame per second.")
     return parser.parse_args()
 
@@ -31,24 +36,25 @@ def main(args):
     env = gym.make("maze_world:" + args.env, render_mode="rgb_array")
     pics = []
 
-    observation, info = env.reset()
-    step_count = 0
+    for i in range(args.num_episodes):
+        observation, info = env.reset()
+        step_count = 0
 
-    step_actions = maze_dijkstra_solver(
-        env.unwrapped.maze_map.astype(bool),
-        env.unwrapped._action_to_direction.values(),
-        info["agent"],
-        info["target"],
-    )
+        step_actions = maze_dijkstra_solver(
+            env.unwrapped.maze_map.astype(bool),
+            env.unwrapped._action_to_direction.values(),
+            info["agent"],
+            info["target"],
+        )
 
-    for action in step_actions:
-        step_count += 1
-        pics.append(env.render())
+        for action in step_actions:
+            step_count += 1
+            pics.append(env.render())
 
-        _, _, terminated, truncated, _ = env.step(action)
-        done = terminated or truncated
+            _, _, terminated, truncated, _ = env.step(action)
+            done = terminated or truncated
 
-    print("Environment finished.")
+        print("Environment finished.")
     imageio.mimwrite(
         os.path.join(args.output_dir, args.env + ".gif"),
         pics[: args.frames],

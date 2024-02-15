@@ -11,8 +11,6 @@ register(
     kwargs={
         "maze_width": 11,
         "maze_height": 11,
-        "maze_complexity": 1,
-        "maze_density": 1,
     },
 )
 
@@ -23,8 +21,6 @@ register(
     kwargs={
         "maze_width": 15,
         "maze_height": 15,
-        "maze_complexity": 1,
-        "maze_density": 1,
     },
 )
 
@@ -35,8 +31,6 @@ register(
     kwargs={
         "maze_width": 21,
         "maze_height": 21,
-        "maze_complexity": 1,
-        "maze_density": 1,
     },
 )
 
@@ -47,8 +41,6 @@ register(
     kwargs={
         "maze_width": 31,
         "maze_height": 31,
-        "maze_complexity": 1,
-        "maze_density": 1,
     },
 )
 
@@ -59,8 +51,6 @@ register(
     kwargs={
         "maze_width": 51,
         "maze_height": 51,
-        "maze_complexity": 1,
-        "maze_density": 1,
     },
 )
 
@@ -71,7 +61,5 @@ register(
     kwargs={
         "maze_width": 101,
         "maze_height": 101,
-        "maze_complexity": 1,
-        "maze_density": 1,
     },
 )

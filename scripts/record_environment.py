@@ -20,7 +20,10 @@ def parse_arguments():
         help="Output directory with GIF record.",
     )
     parser.add_argument(
-        "--env", type=str, help="Name of recorded environment.", required=True
+        "--env",
+        type=str,
+        help="Name of recorded environment.",
+        default="RandomMaze-11x11-v0",
     )
     parser.add_argument(
         "--frames", type=int, default=500, help="Number of frames in GIF record."

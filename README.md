@@ -1,6 +1,6 @@
 # maze-world
 
-Random maze environments with different size and complexity for reinforcement learning research.
+Random maze environments with different size and complexity for reinforcement learning and planning research. This is in-particular to challenge generalization and planning ability in dynamically changing environment.
 
 ![Python package](https://github.com/koulanurag/maze-world/workflows/Python%20package/badge.svg)
 ![Python Version](https://img.shields.io/pypi/pyversions/maze-world)
@@ -41,78 +41,27 @@ _Disclaimer: This project is largely a amalgam of references mentioned <a href=#
   </table>
 </div>
 
-## Usage:
+See all [here](https://koulanurag.dev/maze-world/environments.html)
 
-1. Basics:
+## Quick-Start:
+```python
+import gymnasium as gym
 
-    ```python
-    import gymnasium as gym
-    
-    env = gym.make("maze_world:RandomMaze-11x11-v0", render_mode="human")
-    terminated, truncated = False, False
-    observation, info = env.reset(seed=0, options={})
-    episode_score = 0.
-   
-    while not (terminated or truncated):
-        action = env.action_space.sample()
-        observation, reward, terminated, truncated, info = env.step(action)
-        episode_score += reward
-   
-    env.close()
-    ```
-2. Creating custom size random maze:
+env = gym.make("maze_world:RandomMaze-11x11-v0", render_mode="human")
+terminated, truncated = False, False
+observation, info = env.reset(seed=0, options={})
+episode_score = 0.
 
-  ```python
-    import gymnasium as gym
-    import maze_world
-    
-    gym.envs.register(
-        id='RandomMaze-7x7-v0',
-        entry_point='maze_world.envs:RandomMazeEnv',
-        max_episode_steps=200,
-        kwargs={
-            "maze_width": 7,
-            "maze_height": 7,
-            "maze_complexity": 1,
-            "maze_density": 1,
-        },
-    )
-    env = gym.make("maze_world:RandomMaze-7x7-v0")
-  ```
-3. Creating maze with pre-specified map:
+while not (terminated or truncated):
+    action = env.action_space.sample()
+    observation, reward, terminated, truncated, info = env.step(action)
+    episode_score += reward
 
-  ```python
-    import gymnasium as gym
+env.close()
+```
 
-    def _generate_maze_fn():
-        # This function would be called on every reset
-    
-        maze_map = [[1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
-                    [1, 0, 0, 0, 0, 0, 0, 0, 0, 1]
-                    [1, 0, 0, 0, 0, 0, 0, 0, 0, 1]
-                    [1, 1, 1, 1, 1, 1, 1, 0, 0, 1]
-                    [1, 1, 1, 1, 1, 1, 1, 0, 0, 1]
-                    [1, 1, 1, 1, 1, 1, 1, 0, 0, 1]
-                    [1, 0, 0, 0, 0, 0, 0, 0, 0, 1]
-                    [1, 0, 0, 0, 0, 0, 0, 0, 0, 1]
-                    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]]
-        agent_loc = [1, 1]
-        target_loc = [1, 7]
-        return maze_map, agent_loc, target_loc
+See entire Quick-start guide [here](https://koulanurag.dev/maze-world/quick-start.html).
 
-
-    gym.envs.register(
-        id='UMaze-v0',
-        entry_point='maze_world.envs:MazeEnv',
-        max_episode_steps=200,
-        kwargs={
-            "generate_maze_fn": _generate_maze_fn,
-            "maze_height": 9,
-            "maze_wwidth": 9,
-        },
-    )
-    env = gym.make("maze_world:UMaze-v0")
-  ```
 ## Testing:
 
 - Install: ```pip install -e ".[test]" ```
@@ -128,3 +77,4 @@ If you would like to develop it further; begin by installing following:
 1. [Gym-Maze](https://github.com/MattChanTK/gym-maze)
 2. [Mazelab](https://github.com/zuoxingdong/mazelab)
 3. [Custom Gym environment based out of gymnasium](https://gymnasium.farama.org/tutorials/gymnasium_basics/environment_creation/)
+4. [Wilson Maze Generator](https://github.com/CaptainFl1nt/WilsonMazeGenerator)

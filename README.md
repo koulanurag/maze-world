@@ -41,7 +41,7 @@ _Disclaimer: This project is largely a amalgam of references mentioned <a href=#
   </table>
 </div>
 
-See all [here](https://koulanurag.dev/maze-world/environments.html)
+See all [here](https://koulanurag.dev/maze-world/environments.html).
 
 ## Quick-Start:
 ```python
@@ -60,7 +60,7 @@ while not (terminated or truncated):
 env.close()
 ```
 
-See entire Quick-start guide [here](https://koulanurag.dev/maze-world/quick-start.html).
+See entire quick-start guide [here](https://koulanurag.dev/maze-world/quick-start.html).
 
 ## Testing:
 

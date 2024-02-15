@@ -67,6 +67,9 @@ html_theme_options = {
     "source_repository": "https://github.com/koulanurag/maze-world/",
     "source_branch": "main",
     "source_directory": "docs/source",
+    "light_logo": "logos/maze-world-logos_black.png",
+    "dark_logo": "logos/maze-world-logos_black.png",
+    "sidebar_hide_name": True,
 }
 
 # Favicons configuration

@@ -22,6 +22,7 @@ Installation
 
 Contents
 ----------
+
 .. toctree::
    :maxdepth: 2
 
@@ -29,7 +30,15 @@ Contents
    quick-start
    api
 
+References
+------------
+
+1. `Gym-Maze <https://github.com/MattChanTK/gym-maze>`_
+2. `Mazelab <https://github.com/zuoxingdong/mazelab>`_
+3. `Custom Gym environment based out of gymnasium <https://gymnasium.farama.org/tutorials/gymnasium_basics/environment_creation/>`_
+4. `Wilson Maze Generator <https://github.com/CaptainFl1nt/WilsonMazeGenerator>`_
+
 Contact
 ----------------
 
-If you have any questions or suggestions , please open an issue on this GitHub repository.
+If you have any questions or suggestions , please open an issue on this `GitHub repository <https://github.com/koulanurag/maze-world>`_.

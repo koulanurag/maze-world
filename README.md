@@ -1,6 +1,6 @@
 # maze-world
 
-Random maze environments with different size and complexity for reinforcement learning and planning research. This is in-particular to challenge generalization and planning ability in dynamically changing environment.
+Random maze environments with different size and complexity for reinforcement learning and planning research. This is in-particular to investigate generalization and planning ability in dynamically changing environment.
 
 ![Python package](https://github.com/koulanurag/maze-world/workflows/Python%20package/badge.svg)
 ![Python Version](https://img.shields.io/pypi/pyversions/maze-world)

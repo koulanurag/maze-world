@@ -27,9 +27,13 @@ class RandomMazeEnv(MazeEnv):
             # fill maze by skipping outside walls
             maze_config[1:-1, 1:-1] = 1 - np.array(generator.grid)
 
-            agent_location = np.array([1, 1])
-            target_location = np.array(
-                [maze_config.shape[0] - 2, maze_config.shape[1] - 2]
+            agent_location, target_location = self.np_random.choice(
+                [
+                    ([1, 1], [maze_config.shape[0] - 2, maze_config.shape[1] - 2]),
+                    ([maze_config.shape[0] - 2, maze_config.shape[1] - 2], [1, 1]),
+                    ([maze_config.shape[0] - 2, 1], [1, maze_config.shape[1] - 2]),
+                    ([1, maze_config.shape[1] - 2], [maze_config.shape[0] - 2, 1]),
+                ]
             )
             return maze_config, agent_location, target_location
 

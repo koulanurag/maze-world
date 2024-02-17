@@ -5,7 +5,7 @@ from setuptools import setup
 
 extras = {
     "test": ["pytest<8.0.0", "pytest_cases"],
-    "develop": ["black", "imageio", "jupyter"],
+    "develop": ["black", "imageio", "jupyter", "black[jupyter]"],
     "docs": [
         "Sphinx<6.0,>=4.0",
         "furo",
@@ -30,7 +30,10 @@ extras["all"] = [item for group in extras.values() for item in group]
 setup(
     name="maze-world",
     version="0.0.1",
-    description="A collection of maze navigation tasks.",
+    description="Random maze environments with different size and complexity"
+    " for reinforcement learning and planning research. This is "
+    "in-particular to investigate generalization and planning"
+    " ability in dynamically changing environment.",
     long_description_content_type="text/markdown",
     long_description=open(
         path.join(path.abspath(path.dirname(__file__)), "README.md"), encoding="utf-8"

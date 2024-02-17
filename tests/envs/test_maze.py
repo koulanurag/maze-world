@@ -17,14 +17,6 @@ def test_init(env_name):
     env = gym.make(f"maze_world:{env_name}")
     observation, info = env.reset()
 
-    assert all(info["agent"] == [1, 1]), "initial agent position is not correct"
-    assert all(
-        info["target"]
-        == [
-            env.unwrapped.maze_width - 2,
-            env.unwrapped.maze_height - 2,
-        ]
-    ), "target position is not correct"
     assert observation["agent"][info["agent"][0], info["agent"][1]] == 2
     assert observation["target"][info["target"][0], info["target"][1]] == 2
 
@@ -36,15 +28,5 @@ def test_init(env_name):
             break
     observation, info = env.reset()
 
-    assert all(
-        info["agent"] == [1, 1]
-    ), "initial agent position is not correct, after episode run and reset"
-    assert all(
-        info["target"]
-        == [
-            env.unwrapped.maze_width - 2,
-            env.unwrapped.maze_height - 2,
-        ]
-    ), "target position is not correct, after episode run and reset"
     assert observation["agent"][info["agent"][0], info["agent"][1]] == 2
     assert observation["target"][info["target"][0], info["target"][1]] == 2

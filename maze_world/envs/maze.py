@@ -34,9 +34,6 @@ class MazeEnv(gym.Env):
         # 2 => agent
         self.observation_space = spaces.Dict(
             {
-                # 0 => floor
-                # 1 => wall
-                # 2 => agent
                 "agent": spaces.Box(
                     low=np.zeros((self.maze_height, self.maze_width)),
                     high=np.ones((self.maze_height, self.maze_width)) * 2,
@@ -108,7 +105,14 @@ class MazeEnv(gym.Env):
             "target": self._target_location,
         }
 
-    def reset(self, seed=None, options=None):
+    def reset(self, seed: int = None, options=None):
+        """
+        Resets the environment and generates a new random maze configuration
+
+        :param seed: seed for random number generator
+        :param options:
+        :return:
+        """
         # We need the following line to seed self.np_random
         super().reset(seed=seed)
 
@@ -139,7 +143,13 @@ class MazeEnv(gym.Env):
     def _no_obstacle(self, location):
         return not (self.maze_map[location[0], location[1]] == 1)  # check for walls
 
-    def step(self, action):
+    def step(self, action: int):
+        """
+        steps action in the environment
+
+        :param action:
+        :return:
+        """
         terminated = False
 
         # Map the action (element of {0,1,2,3}) to the direction we walk in
@@ -257,7 +267,5 @@ OBSERVATION_MEANING = {
     0: "empty",
     1: "wall",
     2: "agent",
-    3: "target",
-    4: "agent_on_target",
 }
 OBJECT_ID = {v: k for k, v in OBSERVATION_MEANING.items()}

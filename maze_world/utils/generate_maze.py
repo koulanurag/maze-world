@@ -1,15 +1,14 @@
+import random
 import time
 
 import matplotlib.pyplot as plt
-
-import random
 
 
 class WilsonMazeGenerator:
     """
     Maze Generator using Wilson's Loop Erased Random Walk Algorithm
 
-    Reference: https://github.com/CaptainFl1nt/WilsonMazeGenerator
+    Source: https://github.com/CaptainFl1nt/WilsonMazeGenerator
     """
 
     def __init__(self, height, width):

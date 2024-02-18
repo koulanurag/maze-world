@@ -13,19 +13,9 @@ API Reference
    :target: https://codecov.io/gh/koulanurag/maze-world
    :alt: codecov
 
+.. toctree::
+   :maxdepth: 2
 
-Environment
------------
-
-.. automodule:: maze_world.envs
-   :members:
-   :undoc-members:
-   :imported-members:
-
-Utils
------
-.. automodule:: maze_world.utils
-   :members:
-   :undoc-members:
-   :imported-members:
+   api/environment
+   api/utils
 

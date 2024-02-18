@@ -72,15 +72,15 @@ html_theme_options = {
 }
 
 # Favicons configuration
-# favicons = [
-#     {"href": "favicon/favicon.ico"},
-#     {"href": "favicon/favicon-16x16.png"},
-#     {"href": "favicon/favicon-32x32.png"},
-#     {
-#         "rel": "apple-touch-icon",
-#         "href": "favicon/apple-touch-icon.png",
-#     },
-# ]
+favicons = [
+    {"href": "favicon/favicon.ico"},
+    {"href": "favicon/favicon-16x16.png"},
+    {"href": "favicon/favicon-32x32.png"},
+    {
+        "rel": "apple-touch-icon",
+        "href": "favicon/apple-touch-icon.png",
+    },
+]
 
 # -- Options for autodoc ----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/extensions/autodoc.html#configuration

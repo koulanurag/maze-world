@@ -5,7 +5,7 @@ from ..utils import WilsonMazeGenerator
 
 
 class RandomMazeEnv(MazeEnv):
-    r"""It extends Maze Class to create random mazes of specified sizes at each reset"""
+    r"""Extends the MazeEnv class to create random mazes of specified sizes at each reset."""
 
     def __init__(
         self,
@@ -24,6 +24,9 @@ class RandomMazeEnv(MazeEnv):
 
         :param maze_width: The width of the maze
         :param maze_height:  The height of the maze
+
+        Raises:
+            ValueError: If the width or height of the maze is not odd.
         """
         if maze_width % 2 == 0 or maze_height % 2 == 0:
             raise ValueError("width/height of maze should be odd")
@@ -32,6 +35,13 @@ class RandomMazeEnv(MazeEnv):
         self.maze_height = maze_height
 
         def _generate_maze():
+            """
+            Generates a random internal maze configuration.
+
+            Returns:
+                tuple: A tuple containing the maze configuration, agent location, and target location.
+            """
+
             # generate internal maze( other than outside wall area)
             generator = WilsonMazeGenerator(maze_height - 2, maze_width - 2)
             generator.generate_maze()

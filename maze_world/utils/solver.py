@@ -60,14 +60,16 @@ def get_actions(impassable_array, motions, predecessors, start_idx, goal_idx):
 
 def maze_dijkstra_solver(impassable_array, motions, start_idx, goal_idx):
     """
-    Uses Dijkstra's algorithm to solve a maze
+    Solves a maze using Dijkstra's algorithm.
 
-    :param impassable_array:
-    :param motions:
-    :param start_idx: (x,y) initial position of the agent
-    :param goal_idx: (x,y) position of the goal cell.
-    :return:
+    Args:
+        impassable_array (array_like): Array representing impassable cells in the maze.
+        motions (array_like): List of possible motions in the maze.
+        start_idx (tuple): Initial position of the agent (x, y).
+        goal_idx (tuple): Position of the goal cell (x, y).
 
+    Returns:
+        list: List of actions to reach the goal from the start position.
 
     """
     impassable_array = np.asarray(impassable_array)

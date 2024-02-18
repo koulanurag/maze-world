@@ -11,12 +11,15 @@ _Disclaimer: This project is largely a amalgam of references mentioned <a href=#
 
 ## Installation
 
-- Using PyPI:
-   ```bash
-   pip install maze-world
-   ```
+[//]: # (- Using PyPI:)
 
-- Directly from source (recommended):
+[//]: # (   ```bash)
+
+[//]: # (   pip install maze-world)
+
+[//]: # (   ```)
+
+[//]: # (- Directly from source &#40;recommended&#41;:)
    ```bash
    git clone https://github.com/koulanurag/maze-world.git
    cd maze-world

@@ -15,17 +15,19 @@ Random maze environments with different size and complexity for reinforcement le
 Installation
 ------------
 
-- Using PyPI:
-   .. code-block:: console
+..
+    - Using PyPI:
+       .. code-block:: console
 
-       pip install maze-world
+           pip install maze-world
+..
+    - Directly from source (recommended):
 
-- Directly from source (recommended):
-    .. code-block:: console
+.. code-block:: console
 
-       git clone https://github.com/koulanurag/maze-world.git
-       cd maze-world
-       pip install -e .
+   git clone https://github.com/koulanurag/maze-world.git
+   cd maze-world
+   pip install -e .
 
 Contents
 ----------

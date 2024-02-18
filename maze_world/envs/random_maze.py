@@ -5,12 +5,26 @@ from ..utils import WilsonMazeGenerator
 
 
 class RandomMazeEnv(MazeEnv):
+    r"""It extends Maze Class to create random mazes of specified sizes at each reset"""
+
     def __init__(
         self,
         render_mode: str = None,
         maze_width: int = 11,
         maze_height: int = 11,
     ):
+        r"""
+        :param render_mode: specify one of the following:
+
+            - None (default): no render is computed.
+            - “human”: The environment is continuously rendered in the current display or terminal, usually for human consumption. This rendering should occur during step() and render() doesn’t need to be called. Returns None.
+            - “rgb_array”: Return a single frame representing the current state of the environment. A frame is a np.ndarray with shape (x, y, 3) representing RGB values for an x-by-y pixel image.
+            - “ansi”: Return a strings (str) or StringIO.StringIO containing a terminal-style text representation for each time step. The text can include newlines and ANSI escape sequences (e.g. for colors).
+            - “rgb_array_list” and “ansi_list”: List based version of render modes are possible (except Human) through the wrapper, gymnasium.wrappers.RenderCollection that is automatically applied during gymnasium.make(...,render_mode="rgb_array_list"). The frames collected are popped after render() is called or reset().
+
+        :param maze_width: The width of the maze
+        :param maze_height:  The height of the maze
+        """
         if maze_width % 2 == 0 or maze_height % 2 == 0:
             raise ValueError("width/height of maze should be odd")
 

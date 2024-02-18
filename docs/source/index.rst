@@ -3,7 +3,14 @@
 maze-world
 ====================================================================
 
-Random maze environments with different size and complexity for reinforcement learning research.
+Random maze environments with different size and complexity for reinforcement learning and planning research. This is in-particular to investigate generalization and planning ability in dynamically changing environment.
+
+.. raw:: html
+
+    <div class="disclaimer highlight">
+        Disclaimer: This project is largely a amalgam of references mentioned <a href=#references>here</a>.
+    </div>
+
 
 Installation
 ------------

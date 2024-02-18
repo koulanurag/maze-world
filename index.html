@@ -10,11 +10,14 @@
 <meta property="og:description" content="Random maze environments with different size and complexity for reinforcement learning research." />
 <meta property="og:image:width" content="1146" />
 <meta property="og:image:height" content="600" />
-<meta property="og:image" content="/_images/social_previews/summary_index_150fe4ff.png" />
-<meta property="og:image:alt" content="Random maze environments with different size and complexity for reinforcement learning research. Installation:- Using PyPI:,,.,- Directly from source (recomm..." />
-<meta name="description" content="Random maze environments with different size and complexity for reinforcement learning research. Installation:- Using PyPI:,,.,- Directly from source (recommended):,,.. Contents: Environment Zoo, Q..." />
+<meta property="og:image" content="/_images/social_previews/summary_index_3a3afccc.png" />
+<meta property="og:image:alt" content="Random maze environments with different size and complexity for reinforcement learning and planning research. This is in-particular to investigate generaliza..." />
+<meta name="description" content="Random maze environments with different size and complexity for reinforcement learning and planning research. This is in-particular to investigate generalization and planning ability in dynamically..." />
 <meta name="twitter:card" content="summary_large_image" />
-<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Environment Zoo" href="environments.html" />
+    <link href="_static/favicon/favicon.ico" rel="icon" type="image/x-icon">
+    <link href="_static/favicon/favicon-16x16.png" sizes="16x16" rel="icon" type="image/png">
+    <link href="_static/favicon/favicon-32x32.png" sizes="32x32" rel="icon" type="image/png">
+    <link rel="apple-touch-icon" href="_static/favicon/apple-touch-icon.png" sizes="180x180" type="image/png"><link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Environment Zoo" href="environments.html" />
 
     <!-- Generated with Sphinx 5.3.0 and Furo 2023.03.27 -->
         <title>maze-world</title>
@@ -161,8 +164,11 @@
       
       <div class="sidebar-sticky"><a class="sidebar-brand" href="#">
   
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo only-light" src="_static/logos/maze-world-light-bg.png" alt="Light Logo"/>
+    <img class="sidebar-logo only-dark" src="_static/logos/maze-world-dark-bg.png" alt="Dark Logo"/>
+  </div>
   
-  <span class="sidebar-brand-text">maze-world</span>
   
 </a><form class="sidebar-search-container" method="get" action="search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -173,7 +179,11 @@
   <ul>
 <li class="toctree-l1"><a class="reference internal" href="environments.html">Environment Zoo</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quick-start.html">Quick-Start</a></li>
-<li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="api.html">API Reference</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/environment.html">Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/utils.html">Utils</a></li>
+</ul>
+</li>
 </ul>
 
 </div>
@@ -218,27 +228,16 @@
         <article role="main">
           <section id="maze-world">
 <h1>maze-world<a class="headerlink" href="#maze-world" title="Permalink to this heading">#</a></h1>
-<p>Random maze environments with different size and complexity for reinforcement learning research.</p>
-<section id="installation">
+<p>Random maze environments with different size and complexity for reinforcement learning and planning research. This is in-particular to investigate generalization and planning ability in dynamically changing environment.</p>
+<div class="disclaimer highlight">
+    Disclaimer: This project is largely a amalgam of references mentioned <a href=#references>here</a>.
+</div><section id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Permalink to this heading">#</a></h2>
-<ul>
-<li><dl>
-<dt>Using PyPI:</dt><dd><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">pip install maze-world</span>
-</pre></div>
-</div>
-</dd>
-</dl>
-</li>
-<li><dl>
-<dt>Directly from source (recommended):</dt><dd><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">git clone https://github.com/koulanurag/maze-world.git</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">git clone https://github.com/koulanurag/maze-world.git</span>
 <span class="go">cd maze-world</span>
 <span class="go">pip install -e .</span>
 </pre></div>
 </div>
-</dd>
-</dl>
-</li>
-</ul>
 </section>
 <section id="contents">
 <h2>Contents<a class="headerlink" href="#contents" title="Permalink to this heading">#</a></h2>
@@ -251,13 +250,26 @@
 <li class="toctree-l2"><a class="reference internal" href="quick-start.html#Creating-maze-with-pre-specified-map">Creating maze with pre-specified map</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/environment.html">Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/utils.html">Utils</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://github.com/MattChanTK/gym-maze">Gym-Maze</a></p></li>
+<li><p><a class="reference external" href="https://github.com/zuoxingdong/mazelab">Mazelab</a></p></li>
+<li><p><a class="reference external" href="https://gymnasium.farama.org/tutorials/gymnasium_basics/environment_creation/">Custom Gym environment based out of gymnasium</a></p></li>
+<li><p><a class="reference external" href="https://github.com/CaptainFl1nt/WilsonMazeGenerator">Wilson Maze Generator</a></p></li>
+</ol>
+</section>
 <section id="contact">
 <h2>Contact<a class="headerlink" href="#contact" title="Permalink to this heading">#</a></h2>
-<p>If you have any questions or suggestions , please open an issue on this GitHub repository.</p>
+<p>If you have any questions or suggestions , please open an issue on this <a class="reference external" href="https://github.com/koulanurag/maze-world">GitHub repository</a>.</p>
 </section>
 </section>
 
@@ -309,6 +321,7 @@
 <li><a class="reference internal" href="#">maze-world</a><ul>
 <li><a class="reference internal" href="#installation">Installation</a></li>
 <li><a class="reference internal" href="#contents">Contents</a></li>
+<li><a class="reference internal" href="#references">References</a></li>
 <li><a class="reference internal" href="#contact">Contact</a></li>
 </ul>
 </li>

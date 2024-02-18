@@ -147,8 +147,11 @@
       
       <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
   
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo only-light" src="_static/logos/maze-world-light-bg.png" alt="Light Logo"/>
+    <img class="sidebar-logo only-dark" src="_static/logos/maze-world-dark-bg.png" alt="Dark Logo"/>
+  </div>
   
-  <span class="sidebar-brand-text">maze-world</span>
   
 </a><form class="sidebar-search-container" method="get" action="#" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -159,7 +162,11 @@
   <ul>
 <li class="toctree-l1"><a class="reference internal" href="environments.html">Environment Zoo</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quick-start.html">Quick-Start</a></li>
-<li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="api.html">API Reference</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/environment.html">Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/utils.html">Utils</a></li>
+</ul>
+</li>
 </ul>
 
 </div>

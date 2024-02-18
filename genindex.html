@@ -148,8 +148,11 @@
       
       <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
   
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo only-light" src="_static/logos/maze-world-light-bg.png" alt="Light Logo"/>
+    <img class="sidebar-logo only-dark" src="_static/logos/maze-world-dark-bg.png" alt="Dark Logo"/>
+  </div>
   
-  <span class="sidebar-brand-text">maze-world</span>
   
 </a><form class="sidebar-search-container" method="get" action="search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -160,7 +163,11 @@
   <ul>
 <li class="toctree-l1"><a class="reference internal" href="environments.html">Environment Zoo</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quick-start.html">Quick-Start</a></li>
-<li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="api.html">API Reference</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/environment.html">Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/utils.html">Utils</a></li>
+</ul>
+</li>
 </ul>
 
 </div>
@@ -197,37 +204,163 @@
           
 <section class="genindex-section">
   <h1 id="index">Index</h1>
-  <div class="genindex-jumpbox"><a href="#M"><strong>M</strong></a></div>
+  <div class="genindex-jumpbox"><a href="#_"><strong>_</strong></a> | <a href="#A"><strong>A</strong></a> | <a href="#C"><strong>C</strong></a> | <a href="#G"><strong>G</strong></a> | <a href="#I"><strong>I</strong></a> | <a href="#M"><strong>M</strong></a> | <a href="#O"><strong>O</strong></a> | <a href="#R"><strong>R</strong></a> | <a href="#S"><strong>S</strong></a></div>
 </section>
+<section id="_" class="genindex-section">
+  <h2>_</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/environment.html#maze_world.envs.MazeEnv.__init__">__init__() (maze_world.envs.MazeEnv method)</a>
+
+        <ul>
+          <li><a href="api/environment.html#maze_world.envs.RandomMazeEnv.__init__">(maze_world.envs.RandomMazeEnv method)</a>
+</li>
+          <li><a href="api/utils.html#maze_world.utils.WilsonMazeGenerator.__init__">(maze_world.utils.WilsonMazeGenerator method)</a>
+</li>
+        </ul></li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="A" class="genindex-section">
+  <h2>A</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/environment.html#maze_world.envs.MazeEnv.action_space">action_space (maze_world.envs.MazeEnv attribute)</a>
+
+        <ul>
+          <li><a href="api/environment.html#maze_world.envs.RandomMazeEnv.action_space">(maze_world.envs.RandomMazeEnv attribute)</a>
+</li>
+        </ul></li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="C" class="genindex-section">
+  <h2>C</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/environment.html#maze_world.envs.MazeEnv.close">close() (maze_world.envs.MazeEnv method)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/utils.html#maze_world.utils.WilsonMazeGenerator.cut">cut() (maze_world.utils.WilsonMazeGenerator method)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="G" class="genindex-section">
+  <h2>G</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/utils.html#maze_world.utils.WilsonMazeGenerator.generate_maze">generate_maze() (maze_world.utils.WilsonMazeGenerator method)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/utils.html#maze_world.utils.WilsonMazeGenerator.get_grid">get_grid() (maze_world.utils.WilsonMazeGenerator method)</a>
+</li>
+        <li><a href="api/utils.html#maze_world.utils.WilsonMazeGenerator.get_solution">get_solution() (maze_world.utils.WilsonMazeGenerator method)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="I" class="genindex-section">
+  <h2>I</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/utils.html#maze_world.utils.WilsonMazeGenerator.initialize_grid">initialize_grid() (maze_world.utils.WilsonMazeGenerator method)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/utils.html#maze_world.utils.WilsonMazeGenerator.is_valid_direction">is_valid_direction() (maze_world.utils.WilsonMazeGenerator method)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
 <section id="M" class="genindex-section">
   <h2>M</h2>
   <table style="width: 100%" class="indextable genindextable"><tr>
     <td style="width: 33%; vertical-align: top;"><ul>
-        <li>
-    maze_world
-
-        <ul>
-          <li><a href="api.html#module-maze_world">module</a>
+        <li><a href="api/utils.html#maze_world.utils.maze_dijkstra_solver">maze_dijkstra_solver() (in module maze_world.utils)</a>
 </li>
-        </ul></li>
         <li>
     maze_world.envs
 
         <ul>
-          <li><a href="api.html#module-maze_world.envs">module</a>
+          <li><a href="api/environment.html#module-maze_world.envs">module</a>
+</li>
+        </ul></li>
+        <li>
+    maze_world.utils
+
+        <ul>
+          <li><a href="api/utils.html#module-maze_world.utils">module</a>
 </li>
         </ul></li>
     </ul></td>
     <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/environment.html#maze_world.envs.MazeEnv">MazeEnv (class in maze_world.envs)</a>
+</li>
+        <li><a href="api/environment.html#maze_world.envs.MazeEnv.metadata">metadata (maze_world.envs.MazeEnv attribute)</a>
+</li>
         <li>
     module
 
         <ul>
-          <li><a href="api.html#module-maze_world">maze_world</a>
+          <li><a href="api/environment.html#module-maze_world.envs">maze_world.envs</a>
 </li>
-          <li><a href="api.html#module-maze_world.envs">maze_world.envs</a>
+          <li><a href="api/utils.html#module-maze_world.utils">maze_world.utils</a>
 </li>
         </ul></li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="O" class="genindex-section">
+  <h2>O</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/environment.html#maze_world.envs.MazeEnv.observation_space">observation_space (maze_world.envs.MazeEnv attribute)</a>
+
+        <ul>
+          <li><a href="api/environment.html#maze_world.envs.RandomMazeEnv.observation_space">(maze_world.envs.RandomMazeEnv attribute)</a>
+</li>
+        </ul></li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="R" class="genindex-section">
+  <h2>R</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/environment.html#maze_world.envs.RandomMazeEnv">RandomMazeEnv (class in maze_world.envs)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/environment.html#maze_world.envs.MazeEnv.render">render() (maze_world.envs.MazeEnv method)</a>
+</li>
+        <li><a href="api/environment.html#maze_world.envs.MazeEnv.reset">reset() (maze_world.envs.MazeEnv method)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="S" class="genindex-section">
+  <h2>S</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/utils.html#maze_world.utils.WilsonMazeGenerator.show_solution">show_solution() (maze_world.utils.WilsonMazeGenerator method)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/utils.html#maze_world.utils.WilsonMazeGenerator.solve_maze">solve_maze() (maze_world.utils.WilsonMazeGenerator method)</a>
+</li>
+        <li><a href="api/environment.html#maze_world.envs.MazeEnv.step">step() (maze_world.envs.MazeEnv method)</a>
+</li>
     </ul></td>
   </tr></table>
 </section>

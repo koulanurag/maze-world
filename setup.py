@@ -20,7 +20,6 @@ extras = {
         "nbsphinx>=0.9.3",
         "pandoc>=2.3",
         "myst-nb",
-        "matplotlib",
     ],
 }
 
@@ -43,7 +42,7 @@ setup(
     author_email="koulanurag@gmail.com",
     license="MIT License",
     packages=setuptools.find_packages(),
-    install_requires=["gymnasium>=0.28", "pygame>=2.1.0", "scipy"],
+    install_requires=["gymnasium>=0.28", "pygame>=2.1.0", "scipy", "matplotlib"],
     extras_require=extras,
     tests_require=extras["test"],
     python_requires=">=3.6, <3.12",

@@ -100,7 +100,11 @@ class MazeEnv(gym.Env):
     @property
     def action_space(self):
         """
-        Actions available corresponding to each index: ["right", "up", "left", "down"].
+        Specifies available discrete action for the environment, where
+         0. "right"
+         1. "up"
+         2. "left"
+         3. "down"
 
         :return: Discrete action space object representing the possible actions.
         :rtype: gym.spaces.Discrete
@@ -219,7 +223,7 @@ class MazeEnv(gym.Env):
         :param action: The action to take.
         :type action: int
 
-        :return: A tuple containing:
+        :return:
             - observation: Agent's current observation of the environment.
             - reward (float): Reward received after taking the step.
             - terminated (bool): Whether the episode has terminated or not.
@@ -256,6 +260,9 @@ class MazeEnv(gym.Env):
         return observation, reward, terminated, False, info
 
     def render(self):
+        """
+        Compute the render frames as specified by `render_mode` during the initialization of the environment.
+        """
         if self.render_mode == "rgb_array":
             return self._render_frame()
 

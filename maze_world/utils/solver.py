@@ -62,15 +62,38 @@ def maze_dijkstra_solver(impassable_array, motions, start_idx, goal_idx):
     """
     Solves a maze using Dijkstra's algorithm.
 
-    Args:
-        impassable_array (array_like): Array representing impassable cells in the maze.
-        motions (array_like): List of possible motions in the maze.
-        start_idx (tuple): Initial position of the agent (x, y).
-        goal_idx (tuple): Position of the goal cell (x, y).
+    :param impassable_array: Array representing impassable cells in the maze.
+    :type impassable_array: array_like
+    :param motions: List of possible motions in the maze.
+    :type motions: array_like
+    :param start_idx: Initial position of the agent (x, y).
+    :type start_idx: tuple
+    :param goal_idx: Position of the goal cell (x, y).
+    :type goal_idx: tuple
 
-    Returns:
-        list: List of actions to reach the goal from the start position.
+    :return: List of actions to reach the goal from the start position.
+    :rtype: list
 
+    :example:
+        >>> import gymnasium as gym
+        >>> env = gym.make("maze_world:RandomMaze-11x11-v0")
+        >>> observation, info = env.reset(seed=0, options={})
+        >>> episode_score = 0.0
+        >>>
+        >>> optimal_actions = maze_dijkstra_solver(
+        >>>     env.unwrapped.maze_map.astype(bool),
+        >>>     env.unwrapped._action_to_direction.values(),
+        >>>     info["agent"],
+        >>>     info["target"],
+        >>> )
+        >>> for action in optimal_actions:
+        >>>     observation, reward, terminated, truncated, info = env.step(action)
+        >>>     episode_score += reward
+        >>>     if terminated or truncated:
+        >>>         break
+        >>> env.close()
+        >>> print("Success" if all(info["agent"] == info["target"]) else "Failure")
+        Success
     """
     impassable_array = np.asarray(impassable_array)
     assert impassable_array.dtype == bool

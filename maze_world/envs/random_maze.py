@@ -5,7 +5,11 @@ from ..utils import WilsonMazeGenerator
 
 
 class RandomMazeEnv(MazeEnv):
-    r"""Extends the MazeEnv class to create random mazes of specified sizes at each reset."""
+    r"""Extends the MazeEnv class to create random mazes of specified sizes at each reset.
+
+    :example:
+        >>> env = RandomMazeEnv(maze_width=5,maze_height=7)
+    """
 
     def __init__(
         self,
@@ -14,19 +18,18 @@ class RandomMazeEnv(MazeEnv):
         maze_height: int = 11,
     ):
         r"""
-        :param render_mode: specify one of the following:
+        :param render_mode: Specify one of the following:
 
-            - None (default): no render is computed.
-            - “human”: The environment is continuously rendered in the current display or terminal, usually for human consumption. This rendering should occur during step() and render() doesn’t need to be called. Returns None.
-            - “rgb_array”: Return a single frame representing the current state of the environment. A frame is a np.ndarray with shape (x, y, 3) representing RGB values for an x-by-y pixel image.
-            - “ansi”: Return a strings (str) or StringIO.StringIO containing a terminal-style text representation for each time step. The text can include newlines and ANSI escape sequences (e.g. for colors).
-            - “rgb_array_list” and “ansi_list”: List based version of render modes are possible (except Human) through the wrapper, gymnasium.wrappers.RenderCollection that is automatically applied during gymnasium.make(...,render_mode="rgb_array_list"). The frames collected are popped after render() is called or reset().
+            - None (default): No render is computed.
+            - "human": The environment is continuously rendered in the current display or terminal, usually for human consumption. This rendering should occur during step() and render() doesn’t need to be called. Returns None.
+            - "rgb_array": Return a single frame representing the current state of the environment. A frame is a np.ndarray with shape (x, y, 3) representing RGB values for an x-by-y pixel image.
+            - "ansi": Return a strings (str) or StringIO.StringIO containing a terminal-style text representation for each time step. The text can include newlines and ANSI escape sequences (e.g. for colors).
+            - "rgb_array_list" and "ansi_list": List based version of render modes are possible (except Human) through the wrapper, gymnasium.wrappers.RenderCollection that is automatically applied during gymnasium.make(...,render_mode="rgb_array_list"). The frames collected are popped after render() is called or reset().
 
-        :param maze_width: The width of the maze
-        :param maze_height:  The height of the maze
+        :param maze_width: The width of the maze.
+        :param maze_height: The height of the maze.
 
-        Raises:
-            ValueError: If the width or height of the maze is not odd.
+        :raises ValueError: If the width or height of the maze is not odd.
         """
         if maze_width % 2 == 0 or maze_height % 2 == 0:
             raise ValueError("width/height of maze should be odd")
@@ -38,8 +41,8 @@ class RandomMazeEnv(MazeEnv):
             """
             Generates a random internal maze configuration.
 
-            Returns:
-                tuple: A tuple containing the maze configuration, agent location, and target location.
+            :return: A tuple containing the maze configuration, agent location, and target location.
+            :rtype: tuple
             """
 
             # generate internal maze( other than outside wall area)

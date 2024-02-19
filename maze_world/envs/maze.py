@@ -12,25 +12,23 @@ class MazeEnv(gym.Env):
     The class encapsulates maze environments with arbitrary behind-the-scenes dynamics
     through the :meth:`step` and :meth:`reset` functions.
 
-    The main API methods that users of this class need to know are:
+    :example:
+        >>> import gymnasium as gym
+        >>> def generate_maze_fn():
+        ...     maze_map = np.array(
+        ...         [
+        ...             [1, 1, 1, 1, 1, 1, 1],
+        ...             [1, 0, 0, 0, 0, 0, 1],
+        ...             [1, 0, 0, 0, 0, 0, 1],
+        ...             [1, 0, 0, 0, 0, 0, 1],
+        ...             [1, 1, 1, 1, 1, 1, 1],
+        ...         ]
+        ...     )
+        ...     agent_loc = np.array([1, 1])
+        ...     target_loc = np.array([3, 5])
+        ...     return maze_map, agent_loc, target_loc
+        >>> env = MazeEnv(generate_maze_fn, None, 5, 7)
 
-    - :meth:`step` - Updates an environment with actions returning the next agent observation, the reward for taking that actions, if the environment has terminated or truncated due to the latest action and information from the environment about the step, i.e. metrics, debug info.
-    - :meth:`reset` - Resets the environment to an initial state, required before calling step.
-      Returns the first agent observation for an episode and information, i.e. metrics, debug info.
-    - :meth:`render` - Renders the environments to help visualise what the agent see, examples modes are "human", "rgb_array", "ansi" for text.
-    - :meth:`close` - Closes the environment, important when external software is used, i.e. pygame for rendering, databases
-
-    Environments have additional attributes for users to understand the implementation
-
-    - :attr:`action_space` - The Space object corresponding to valid actions, all valid actions should be contained within the space.
-    - :attr:`observation_space` - The Space object corresponding to valid observations, all valid observations should be contained within the space.
-    - :attr:`reward_range` - A tuple corresponding to the minimum and maximum possible rewards for an agent over an episode. The default reward range is set to :math:`(-\infty,+\infty)`.
-    - :attr:`spec` - An environment spec that contains the information used to initialize the environment from :meth:`gymnasium.make`
-    - :attr:`metadata` - The metadata of the environment, i.e. render modes, render fps
-    - :attr:`np_random` - The random number generator for the environment. This is automatically assigned during ``super().reset(seed=seed)`` and when assessing ``self.np_random``.
-
-    Note:
-        To get reproducible sampling of actions, a seed can be set with ``env.action_space.seed(123)``.
     """
 
     metadata = {"render_modes": ["human", "rgb_array"], "render_fps": 4}
@@ -44,7 +42,7 @@ class MazeEnv(gym.Env):
     ):
         """
 
-        :param generate_maze_fn: This function is called during every reset of the environment and is expected to three items in following order:
+        :param generate_maze_fn: This function is called during every reset of the environment and is expected to return three items in following order:
 
             - maze-map:  numpy array of  map where "1" represents wall and "0" represents floor.
             - agent location: tuple (x,y) where x and y represent location  of agent
@@ -102,19 +100,19 @@ class MazeEnv(gym.Env):
     @property
     def action_space(self):
         """
-        Returns a discrete action space with 4 actions: "right", "up", "left", "down".
+        Actions available corresponding to each index: ["right", "up", "left", "down"].
 
-        Returns:
-            gym.spaces.Discrete: Discrete action space object representing the possible actions.
+        :return: Discrete action space object representing the possible actions.
+        :rtype: gym.spaces.Discrete
         """
         return spaces.Discrete(4)
 
     @property
     def observation_space(self):
         """
-        Returns a dictionary defining the observation space of the 2D maze environment.
+        Defines the observation space of the 2D maze environment.
 
-        The observation space includes two elements:
+        The observation space consists of two elements:
         - 'agent': Represents the position of the agent in the maze.
         - 'target': Represents the position of the target in the maze.
 
@@ -123,10 +121,11 @@ class MazeEnv(gym.Env):
             - 1 corresponds to a wall.
             - 2 corresponds to the agent or the target.
 
-        Returns:
-            gym.spaces.Dict: Dictionary containing the observation space for the agent and the target.
-                - 'agent': gym.spaces.Box object representing the agent's position.
-                - 'target': gym.spaces.Box object representing the target's position.
+        :return: Dictionary containing the observation space for the agent and the target.
+            - 'agent': gym.spaces.Box object representing the agent's position.
+            - 'target': gym.spaces.Box object representing the target's position.
+
+        :rtype: gym.spaces.Dict
         """
         return spaces.Dict(
             {
@@ -170,20 +169,18 @@ class MazeEnv(gym.Env):
         }
 
     def reset(self, seed: int = None, options=None):
-        r"""
+        """
         Resets the environment to its initial state and generates a new random maze configuration.
 
-        Args:
-            seed (int, optional): Seed for the random number generator. Defaults to None.
-            options (None): Unused parameter.
+        :param seed: Seed for the random number generator. Defaults to None.
+        :param options: Unused parameter.
 
-        Returns:
-            observation: Agent's observation of the initial environment state.
-            info (dict): Additional information about the environment.
+        :return:
+            - observation: Agent's observation of the initial environment state.
+            - info (dict): Additional information about the environment.
+        :rtype: tuple
 
-        Raises:
-            ValueError: If the shape of the maze generated by generate_maze_fn() doesn't match the specified maze width and height.
-
+        :raises ValueError: If the shape of the maze generated by generate_maze_fn() doesn't match the specified maze width and height.
         """
         # We need the following line to seed self.np_random
         super().reset(seed=seed)
@@ -219,15 +216,16 @@ class MazeEnv(gym.Env):
         """
         Take a step in the environment.
 
-        Args:
-            action (int): The action to take.
+        :param action: The action to take.
+        :type action: int
 
-        Returns:
-            observation: Agent's observation of the current environment.
-            reward (float): Reward received after taking the step.
-            terminated (bool): Whether the episode has terminated or not.
-            truncated (bool): Whether the episode has been truncated due to max episode steps.
-            info (dict): Additional information about the step.
+        :return: A tuple containing:
+            - observation: Agent's current observation of the environment.
+            - reward (float): Reward received after taking the step.
+            - terminated (bool): Whether the episode has terminated or not.
+            - truncated (bool): Whether the episode has been truncated due to max episode steps.
+            - info (dict): Additional information about the step.
+        :rtype: tuple
         """
         terminated = False
 

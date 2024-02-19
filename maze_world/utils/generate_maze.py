@@ -15,9 +15,10 @@ class WilsonMazeGenerator:
         """
         Initializes a maze generator with the specified width and height.
 
-        Args:
-            height (int): Height of the generated mazes.
-            width (int): Width of the generated mazes.
+        :param height: Height of the generated mazes.
+        :type height: int
+        :param width: Width of the generated mazes.
+        :type width: int
         """
         self.width = 2 * (width // 2) + 1  # Make width odd
         self.height = 2 * (height // 2) + 1  # Make height odd
@@ -46,8 +47,8 @@ class WilsonMazeGenerator:
         """
         Returns a string representation of the maze grid.
 
-        Returns:
-            str: String representation of the grid.
+        :return: String representation of the grid.
+        :rtype: str
         """
         out = "##" * (self.width + 1) + "\n"
         for i in range(self.height):
@@ -67,10 +68,10 @@ class WilsonMazeGenerator:
 
     def get_grid(self):
         """
-        Returns the maze grid.
+        Retrieve the maze grid.
 
-        Returns:
-            list: The maze grid.
+        :return: The maze grid.
+        :rtype: list
         """
         return self.grid
 
@@ -78,17 +79,17 @@ class WilsonMazeGenerator:
         """
         Returns the solution to the maze as a list of tuples.
 
-        Returns:
-            list: The solution to the maze.
+        :return: The solution to the maze.
+        :rtype: list
         """
         return self.solution
 
     def show_solution(self, show):
         """
-        Sets whether the `__str__()` method outputs the solution or not.
+        Sets whether the __str__() method outputs the solution or not.
 
-        Args:
-            show (bool): Boolean value indicating whether to show the solution or not.
+        :param show: Boolean value indicating whether to show the solution or not.
+        :type show: bool
         """
         self.showSolution = show
 
@@ -97,17 +98,16 @@ class WilsonMazeGenerator:
         Generates the maze according to the Wilson Loop Erased Random Walk Algorithm.
 
         The algorithm works as follows:
-        1. Reset the grid before generation.
-        2. Choose the first cell to put in the visited list.
-        3. Loop until all cells have been visited:
-            a. Choose a random cell to start the walk.
-            b. Loop until the random walk reaches a visited cell.
-            c. Loop until the end of the path is reached:
-                - Add the cell to visited and cut into the maze.
-                - Follow the direction to the next cell.
+            1. Reset the grid before generation.
+            2. Choose the first cell to put in the visited list.
+            3. Loop until all cells have been visited:
+                a. Choose a random cell to start the walk.
+                b. Loop until the random walk reaches a visited cell.
+                c. Loop until the end of the path is reached:
+                    - Add the cell to visited and cut into the maze.
+                    - Follow the direction to the next cell.
 
-        Returns:
-            None
+        :return: None
         """
         # reset the grid before generation
         self.__initialize_grid()
@@ -160,8 +160,7 @@ class WilsonMazeGenerator:
     def solve_maze(self):
         """Solves the maze according to the Wilson Loop Erased Random Walk Algorithm
 
-        Returns:
-            None
+        :return: None
         """
         # if there is no maze to solve, cut the method
         if not self.generated:
@@ -233,8 +232,7 @@ class WilsonMazeGenerator:
         """
         Resets the maze grid to blank before generating a maze.
 
-        Returns:
-            None
+        :return: None
         """
         for i in range(self.height):
             for j in range(self.width):
@@ -252,13 +250,10 @@ class WilsonMazeGenerator:
 
     def _cut(self, cell):
         """
-        Sets the value of the grid at the specified location to 1, representing a cut.
+        Sets the value of the grid at the specified location to 1, indicating a cut.
 
-        Args:
-            cell (tuple): Tuple (y, x) representing the location of where to cut.
-
-        Returns:
-            None
+        :param tuple cell: A tuple (y, x) representing the location where the cut should occur.
+        :return: None
         """
         self.grid[cell[0]][cell[1]] = 1
 

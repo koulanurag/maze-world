@@ -211,17 +211,18 @@
 
 <div class="viewcode-block" id="WilsonMazeGenerator"><a class="viewcode-back" href="../../../api/utils.html#maze_world.utils.WilsonMazeGenerator">[docs]</a><span class="k">class</span> <span class="nc">WilsonMazeGenerator</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Maze Generator using Wilson&#39;s Loop Erased Random Walk Algorithm</span>
+<span class="sd">    Maze Generator utilizing Wilson&#39;s Loop Erased Random Walk Algorithm.</span>
 
 <span class="sd">    Source: https://github.com/CaptainFl1nt/WilsonMazeGenerator</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="WilsonMazeGenerator.__init__"><a class="viewcode-back" href="../../../api/utils.html#maze_world.utils.WilsonMazeGenerator.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">width</span><span class="p">):</span>
+<div class="viewcode-block" id="WilsonMazeGenerator.__init__"><a class="viewcode-back" href="../../../api/utils.html#maze_world.utils.WilsonMazeGenerator.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">height</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">width</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        WilsonMazeGenerator(int,int) -&gt; WilsonMazeGenerator</span>
-<span class="sd">        Creates a maze generator with specified width and height.</span>
-<span class="sd">        width: width of generated mazes</span>
-<span class="sd">        height: height of generated mazes</span>
+<span class="sd">        Initializes a maze generator with the specified width and height.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            height (int): Height of the generated mazes.</span>
+<span class="sd">            width (int): Width of the generated mazes.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">width</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="n">width</span> <span class="o">//</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>  <span class="c1"># Make width odd</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">height</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="n">height</span> <span class="o">//</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>  <span class="c1"># Make height odd</span>
@@ -248,8 +249,10 @@
 
     <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        WilsonMazeGenerator.__str__() -&gt; str</span>
-<span class="sd">        outputs a string version of the grid</span>
+<span class="sd">        Returns a string representation of the maze grid.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            str: String representation of the grid.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">out</span> <span class="o">=</span> <span class="s2">&quot;##&quot;</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">width</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">height</span><span class="p">):</span>
@@ -268,34 +271,57 @@
         <span class="k">return</span> <span class="n">out</span> <span class="o">+</span> <span class="s2">&quot;##&quot;</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">width</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
 
 <div class="viewcode-block" id="WilsonMazeGenerator.get_grid"><a class="viewcode-back" href="../../../api/utils.html#maze_world.utils.WilsonMazeGenerator.get_grid">[docs]</a>    <span class="k">def</span> <span class="nf">get_grid</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;WilsonMazeGenerator.get_grid() -&gt; list</span>
-<span class="sd">        returns the maze grid&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the maze grid.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            list: The maze grid.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">grid</span></div>
 
 <div class="viewcode-block" id="WilsonMazeGenerator.get_solution"><a class="viewcode-back" href="../../../api/utils.html#maze_world.utils.WilsonMazeGenerator.get_solution">[docs]</a>    <span class="k">def</span> <span class="nf">get_solution</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;WilsonMazeGenerator.get_solution() -&gt; list</span>
-<span class="sd">        Returns the solution to the maze as a list</span>
-<span class="sd">        of tuples&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the solution to the maze as a list of tuples.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            list: The solution to the maze.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">solution</span></div>
 
 <div class="viewcode-block" id="WilsonMazeGenerator.show_solution"><a class="viewcode-back" href="../../../api/utils.html#maze_world.utils.WilsonMazeGenerator.show_solution">[docs]</a>    <span class="k">def</span> <span class="nf">show_solution</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">show</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;WilsonMazeGenerator.show_solution(boolean) -&gt; None</span>
-<span class="sd">        Set whether WilsonMazeGenerator.__str__() outputs the</span>
-<span class="sd">        solution or not&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Sets whether the `__str__()` method outputs the solution or not.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            show (bool): Boolean value indicating whether to show the solution or not.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">showSolution</span> <span class="o">=</span> <span class="n">show</span></div>
 
 <div class="viewcode-block" id="WilsonMazeGenerator.generate_maze"><a class="viewcode-back" href="../../../api/utils.html#maze_world.utils.WilsonMazeGenerator.generate_maze">[docs]</a>    <span class="k">def</span> <span class="nf">generate_maze</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;WilsonMazeGenerator.generate_maze() -&gt; None</span>
-<span class="sd">        Generates the maze according to the Wilson Loop Erased Random</span>
-<span class="sd">        Walk Algorithm&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Generates the maze according to the Wilson Loop Erased Random Walk Algorithm.</span>
+
+<span class="sd">        The algorithm works as follows:</span>
+<span class="sd">        1. Reset the grid before generation.</span>
+<span class="sd">        2. Choose the first cell to put in the visited list.</span>
+<span class="sd">        3. Loop until all cells have been visited:</span>
+<span class="sd">            a. Choose a random cell to start the walk.</span>
+<span class="sd">            b. Loop until the random walk reaches a visited cell.</span>
+<span class="sd">            c. Loop until the end of the path is reached:</span>
+<span class="sd">                - Add the cell to visited and cut into the maze.</span>
+<span class="sd">                - Follow the direction to the next cell.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># reset the grid before generation</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">initialize_grid</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__initialize_grid</span><span class="p">()</span>
 
         <span class="c1"># choose the first cell to put in the visited list</span>
         <span class="c1"># see Step 1 of the algorithm.</span>
         <span class="n">current</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">unvisited</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">unvisited</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">visited</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">current</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">current</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_cut</span><span class="p">(</span><span class="n">current</span><span class="p">)</span>
 
         <span class="c1"># loop until all cells have been visited</span>
         <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">unvisited</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
@@ -307,12 +333,12 @@
                 <span class="c1"># choose direction to walk (Step 3)</span>
                 <span class="n">dirNum</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
                 <span class="c1"># check if direction is valid. If not, choose new direction</span>
-                <span class="k">while</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_valid_direction</span><span class="p">(</span><span class="n">current</span><span class="p">,</span> <span class="n">dirNum</span><span class="p">):</span>
+                <span class="k">while</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">__is_valid_direction</span><span class="p">(</span><span class="n">current</span><span class="p">,</span> <span class="n">dirNum</span><span class="p">):</span>
                     <span class="n">dirNum</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
                 <span class="c1"># save the cell and direction in the path</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">[</span><span class="n">current</span><span class="p">]</span> <span class="o">=</span> <span class="n">dirNum</span>
                 <span class="c1"># get the next cell in that direction</span>
-                <span class="n">current</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_next_cell</span><span class="p">(</span><span class="n">current</span><span class="p">,</span> <span class="n">dirNum</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+                <span class="n">current</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__get_next_cell</span><span class="p">(</span><span class="n">current</span><span class="p">,</span> <span class="n">dirNum</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
                 <span class="k">if</span> <span class="n">current</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">visited</span><span class="p">:</span>  <span class="c1"># visited cell is reached (Step 5)</span>
                     <span class="k">break</span>
 
@@ -322,14 +348,14 @@
                 <span class="c1"># add cell to visited and cut into the maze</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">visited</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">current</span><span class="p">)</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">unvisited</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">current</span><span class="p">)</span>  <span class="c1"># (Step 6.b)</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">current</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_cut</span><span class="p">(</span><span class="n">current</span><span class="p">)</span>
 
                 <span class="c1"># follow the direction to next cell (Step 6.a)</span>
                 <span class="n">dirNum</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">[</span><span class="n">current</span><span class="p">]</span>
-                <span class="n">crossed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_next_cell</span><span class="p">(</span><span class="n">current</span><span class="p">,</span> <span class="n">dirNum</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">crossed</span><span class="p">)</span>  <span class="c1"># cut crossed edge</span>
+                <span class="n">crossed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__get_next_cell</span><span class="p">(</span><span class="n">current</span><span class="p">,</span> <span class="n">dirNum</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_cut</span><span class="p">(</span><span class="n">crossed</span><span class="p">)</span>  <span class="c1"># cut crossed edge</span>
 
-                <span class="n">current</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_next_cell</span><span class="p">(</span><span class="n">current</span><span class="p">,</span> <span class="n">dirNum</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+                <span class="n">current</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__get_next_cell</span><span class="p">(</span><span class="n">current</span><span class="p">,</span> <span class="n">dirNum</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
                 <span class="k">if</span> <span class="n">current</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">visited</span><span class="p">:</span>  <span class="c1"># end of path is reached</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">path</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>  <span class="c1"># clear the path</span>
                     <span class="k">break</span>
@@ -337,9 +363,11 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">generated</span> <span class="o">=</span> <span class="kc">True</span></div>
 
 <div class="viewcode-block" id="WilsonMazeGenerator.solve_maze"><a class="viewcode-back" href="../../../api/utils.html#maze_world.utils.WilsonMazeGenerator.solve_maze">[docs]</a>    <span class="k">def</span> <span class="nf">solve_maze</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;WilsonMazeGenerator.solve_maze() -&gt; None</span>
-<span class="sd">        Solves the maze according to the Wilson Loop Erased Random</span>
-<span class="sd">        Walk Algorithm&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Solves the maze according to the Wilson Loop Erased Random Walk Algorithm</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># if there is no maze to solve, cut the method</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">generated</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">None</span>
@@ -355,8 +383,8 @@
                 <span class="c1"># must remain in the grid</span>
                 <span class="c1"># also must not cross a wall</span>
                 <span class="n">dirNum</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
-                <span class="n">adjacent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_next_cell</span><span class="p">(</span><span class="n">current</span><span class="p">,</span> <span class="n">dirNum</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_valid_direction</span><span class="p">(</span><span class="n">current</span><span class="p">,</span> <span class="n">dirNum</span><span class="p">):</span>
+                <span class="n">adjacent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__get_next_cell</span><span class="p">(</span><span class="n">current</span><span class="p">,</span> <span class="n">dirNum</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__is_valid_direction</span><span class="p">(</span><span class="n">current</span><span class="p">,</span> <span class="n">dirNum</span><span class="p">):</span>
                     <span class="n">hasWall</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="p">[</span><span class="n">adjacent</span><span class="p">[</span><span class="mi">0</span><span class="p">]][</span><span class="n">adjacent</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span> <span class="o">==</span> <span class="mi">0</span>
                     <span class="k">if</span> <span class="ow">not</span> <span class="n">hasWall</span><span class="p">:</span>
                         <span class="k">break</span>
@@ -364,7 +392,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">[</span><span class="n">current</span><span class="p">]</span> <span class="o">=</span> <span class="n">dirNum</span>
 
             <span class="c1"># get next cell</span>
-            <span class="n">current</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_next_cell</span><span class="p">(</span><span class="n">current</span><span class="p">,</span> <span class="n">dirNum</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+            <span class="n">current</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__get_next_cell</span><span class="p">(</span><span class="n">current</span><span class="p">,</span> <span class="n">dirNum</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">current</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">end</span><span class="p">:</span>
                 <span class="k">break</span>  <span class="c1"># break if ending cell is reached</span>
 
@@ -375,8 +403,8 @@
         <span class="k">while</span> <span class="ow">not</span> <span class="p">(</span><span class="n">current</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">end</span><span class="p">):</span>
             <span class="n">dirNum</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">[</span><span class="n">current</span><span class="p">]</span>  <span class="c1"># get direction</span>
             <span class="c1"># add adjacent and crossed cells to solution</span>
-            <span class="n">crossed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_next_cell</span><span class="p">(</span><span class="n">current</span><span class="p">,</span> <span class="n">dirNum</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-            <span class="n">current</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_next_cell</span><span class="p">(</span><span class="n">current</span><span class="p">,</span> <span class="n">dirNum</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+            <span class="n">crossed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__get_next_cell</span><span class="p">(</span><span class="n">current</span><span class="p">,</span> <span class="n">dirNum</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="n">current</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__get_next_cell</span><span class="p">(</span><span class="n">current</span><span class="p">,</span> <span class="n">dirNum</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">solution</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">crossed</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">solution</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">current</span><span class="p">)</span>
 
@@ -385,7 +413,7 @@
     <span class="c1">## Private Methods ##</span>
     <span class="c1">## Do Not Use Outside This Class ##</span>
 
-<div class="viewcode-block" id="WilsonMazeGenerator.get_next_cell"><a class="viewcode-back" href="../../../api/utils.html#maze_world.utils.WilsonMazeGenerator.get_next_cell">[docs]</a>    <span class="k">def</span> <span class="nf">get_next_cell</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cell</span><span class="p">,</span> <span class="n">dirNum</span><span class="p">,</span> <span class="n">fact</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__get_next_cell</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cell</span><span class="p">,</span> <span class="n">dirNum</span><span class="p">,</span> <span class="n">fact</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;WilsonMazeGenerator.get_next_cell(tuple,int,int) -&gt; tuple</span>
 <span class="sd">        Outputs the next cell when moved a distance fact in the the</span>
 <span class="sd">        direction specified by dirNum from the initial cell.</span>
@@ -393,23 +421,25 @@
 <span class="sd">        dirNum: int with values 0,1,2,3</span>
 <span class="sd">        fact: int distance to next cell&quot;&quot;&quot;</span>
         <span class="n">dirTup</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">directions</span><span class="p">[</span><span class="n">dirNum</span><span class="p">]</span>
-        <span class="k">return</span> <span class="p">(</span><span class="n">cell</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">fact</span> <span class="o">*</span> <span class="n">dirTup</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">cell</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">fact</span> <span class="o">*</span> <span class="n">dirTup</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span></div>
+        <span class="k">return</span> <span class="p">(</span><span class="n">cell</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">fact</span> <span class="o">*</span> <span class="n">dirTup</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">cell</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">fact</span> <span class="o">*</span> <span class="n">dirTup</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 
-<div class="viewcode-block" id="WilsonMazeGenerator.is_valid_direction"><a class="viewcode-back" href="../../../api/utils.html#maze_world.utils.WilsonMazeGenerator.is_valid_direction">[docs]</a>    <span class="k">def</span> <span class="nf">is_valid_direction</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cell</span><span class="p">,</span> <span class="n">dirNum</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__is_valid_direction</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cell</span><span class="p">,</span> <span class="n">dirNum</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;WilsonMazeGenerator(tuple,int) -&gt; boolean</span>
 <span class="sd">        Checks if the adjacent cell in the direction specified by</span>
 <span class="sd">        dirNum is within the grid</span>
 <span class="sd">        cell: tuple (y,x) representing position of initial cell</span>
 <span class="sd">        dirNum: int with values 0,1,2,3&quot;&quot;&quot;</span>
-        <span class="n">newCell</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_next_cell</span><span class="p">(</span><span class="n">cell</span><span class="p">,</span> <span class="n">dirNum</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">newCell</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__get_next_cell</span><span class="p">(</span><span class="n">cell</span><span class="p">,</span> <span class="n">dirNum</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
         <span class="n">tooSmall</span> <span class="o">=</span> <span class="n">newCell</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">newCell</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span>
         <span class="n">tooBig</span> <span class="o">=</span> <span class="n">newCell</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">height</span> <span class="ow">or</span> <span class="n">newCell</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">width</span>
-        <span class="k">return</span> <span class="ow">not</span> <span class="p">(</span><span class="n">tooSmall</span> <span class="ow">or</span> <span class="n">tooBig</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="ow">not</span> <span class="p">(</span><span class="n">tooSmall</span> <span class="ow">or</span> <span class="n">tooBig</span><span class="p">)</span>
 
-<div class="viewcode-block" id="WilsonMazeGenerator.initialize_grid"><a class="viewcode-back" href="../../../api/utils.html#maze_world.utils.WilsonMazeGenerator.initialize_grid">[docs]</a>    <span class="k">def</span> <span class="nf">initialize_grid</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__initialize_grid</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        WilsonMazeGenerator.initialize_grid() -&gt; None</span>
 <span class="sd">        Resets the maze grid to blank before generating a maze.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            None</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">height</span><span class="p">):</span>
             <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">width</span><span class="p">):</span>
@@ -423,14 +453,19 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">visited</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">path</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">generated</span> <span class="o">=</span> <span class="kc">False</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">generated</span> <span class="o">=</span> <span class="kc">False</span>
 
-<div class="viewcode-block" id="WilsonMazeGenerator.cut"><a class="viewcode-back" href="../../../api/utils.html#maze_world.utils.WilsonMazeGenerator.cut">[docs]</a>    <span class="k">def</span> <span class="nf">cut</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cell</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;WilsonMazeGenerator.cut(tuple) -&gt; None</span>
-<span class="sd">        Sets the value of the grid at the location specified by cell</span>
-<span class="sd">        to 1</span>
-<span class="sd">        cell: tuple (y,x) location of where to cut&quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="p">[</span><span class="n">cell</span><span class="p">[</span><span class="mi">0</span><span class="p">]][</span><span class="n">cell</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span> <span class="o">=</span> <span class="mi">1</span></div></div>
+    <span class="k">def</span> <span class="nf">_cut</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cell</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Sets the value of the grid at the specified location to 1, representing a cut.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            cell (tuple): Tuple (y, x) representing the location of where to cut.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="p">[</span><span class="n">cell</span><span class="p">[</span><span class="mi">0</span><span class="p">]][</span><span class="n">cell</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span> <span class="o">=</span> <span class="mi">1</span></div>
 
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>

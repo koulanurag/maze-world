@@ -228,7 +228,7 @@
 <span id="environment"></span><h1>Environment<a class="headerlink" href="#module-maze_world.envs" title="Permalink to this heading">#</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="maze_world.envs.MazeEnv">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">maze_world.envs.</span></span><span class="sig-name descname"><span class="pre">MazeEnv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">generate_maze_fn</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">render_mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maze_width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maze_height</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/maze_world/envs/maze.html#MazeEnv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#maze_world.envs.MazeEnv" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">maze_world.envs.</span></span><span class="sig-name descname"><span class="pre">MazeEnv</span></span><a class="reference internal" href="../_modules/maze_world/envs/maze.html#MazeEnv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#maze_world.envs.MazeEnv" title="Permalink to this definition">#</a></dt>
 <dd><p>The main Maze Environment class for implementing different maze environments</p>
 <p>The class encapsulates maze environments with arbitrary behind-the-scenes dynamics
 through the <a class="reference internal" href="#maze_world.envs.MazeEnv.step" title="maze_world.envs.MazeEnv.step"><code class="xref py py-meth docutils literal notranslate"><span class="pre">step()</span></code></a> and <a class="reference internal" href="#maze_world.envs.MazeEnv.reset" title="maze_world.envs.MazeEnv.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a> functions.</p>
@@ -253,30 +253,6 @@ Returns the first agent observation for an episode and information, i.e. metrics
 <p class="admonition-title">Note</p>
 <p>To get reproducible sampling of actions, a seed can be set with <code class="docutils literal notranslate"><span class="pre">env.action_space.seed(123)</span></code>.</p>
 </div>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>generate_maze_fn</strong> – <p>This function is called during every reset of the environment and is expected to three items in following order:</p>
-<ul>
-<li><p>maze-map:  numpy array of  map where “1” represents wall and “0” represents floor.</p></li>
-<li><p>agent location: tuple (x,y) where x and y represent location  of agent</p></li>
-<li><p>target location: tuple (x,y) where x and y represent target location  of the agent</p></li>
-</ul>
-</p></li>
-<li><p><strong>render_mode</strong> – <p>specifies one of the following:</p>
-<ul>
-<li><p>None (default): no render is computed.</p></li>
-<li><p>“human”: The environment is continuously rendered in the current display or terminal, usually for human consumption. This rendering should occur during step() and render() doesn’t need to be called. Returns None.</p></li>
-<li><p>“rgb_array”: Return a single frame representing the current state of the environment. A frame is a np.ndarray with shape (x, y, 3) representing RGB values for an x-by-y pixel image.</p></li>
-<li><p>“ansi”: Return a strings (str) or StringIO.StringIO containing a terminal-style text representation for each time step. The text can include newlines and ANSI escape sequences (e.g. for colors).</p></li>
-<li><p>“rgb_array_list” and “ansi_list”: List based version of render modes are possible (except Human) through the wrapper, gymnasium.wrappers.RenderCollection that is automatically applied during gymnasium.make(…,render_mode=”rgb_array_list”). The frames collected are popped after render() is called or reset().</p></li>
-</ul>
-</p></li>
-<li><p><strong>maze_width</strong> – The width of the maze</p></li>
-<li><p><strong>maze_height</strong> – The height of the maze</p></li>
-</ul>
-</dd>
-</dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="maze_world.envs.MazeEnv.__init__">
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">generate_maze_fn</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">render_mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maze_width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maze_height</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/maze_world/envs/maze.html#MazeEnv.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#maze_world.envs.MazeEnv.__init__" title="Permalink to this definition">#</a></dt>
@@ -306,12 +282,21 @@ Returns the first agent observation for an episode and information, i.e. metrics
 </dl>
 </dd></dl>
 
-<dl class="py attribute">
+<dl class="py property">
 <dt class="sig sig-object py" id="maze_world.envs.MazeEnv.action_space">
-<span class="sig-name descname"><span class="pre">action_space</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">spaces.Space</span><span class="p"><span class="pre">[</span></span><span class="pre">ActType</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#maze_world.envs.MazeEnv.action_space" title="Permalink to this definition">#</a></dt>
-<dd><p>The following dictionary maps abstract actions from <cite>self.action_space</cite> to
-the direction we will walk in if that action is taken.
-I.e. 0 corresponds to “right”, 1 to “up” etc.</p>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">action_space</span></span><a class="headerlink" href="#maze_world.envs.MazeEnv.action_space" title="Permalink to this definition">#</a></dt>
+<dd><p>“right”, “up”, “left”, “down”.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Discrete action space object representing the possible actions.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>gym.spaces.Discrete</p>
+</dd>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Returns a discrete action space with 4 actions</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
@@ -326,10 +311,36 @@ I.e. 0 corresponds to “right”, 1 to “up” etc.</p>
 <span class="sig-name descname"><span class="pre">metadata</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'render_fps':</span> <span class="pre">4,</span> <span class="pre">'render_modes':</span> <span class="pre">['human',</span> <span class="pre">'rgb_array']}</span></em><a class="headerlink" href="#maze_world.envs.MazeEnv.metadata" title="Permalink to this definition">#</a></dt>
 <dd></dd></dl>
 
-<dl class="py attribute">
+<dl class="py property">
 <dt class="sig sig-object py" id="maze_world.envs.MazeEnv.observation_space">
-<span class="sig-name descname"><span class="pre">observation_space</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">spaces.Space</span><span class="p"><span class="pre">[</span></span><span class="pre">ObsType</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#maze_world.envs.MazeEnv.observation_space" title="Permalink to this definition">#</a></dt>
-<dd><p>We have 4 actions, corresponding to “right”, “up”, “left”, “down”</p>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">observation_space</span></span><a class="headerlink" href="#maze_world.envs.MazeEnv.observation_space" title="Permalink to this definition">#</a></dt>
+<dd><p>Returns a dictionary defining the observation space of the 2D maze environment.</p>
+<p>The observation space includes two elements:
+- ‘agent’: Represents the position of the agent in the maze.
+- ‘target’: Represents the position of the target in the maze.</p>
+<dl class="simple">
+<dt>In the 2D maze:</dt><dd><ul class="simple">
+<li><p>0 corresponds to an empty floor.</p></li>
+<li><p>1 corresponds to a wall.</p></li>
+<li><p>2 corresponds to the agent or the target.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><dl class="simple">
+<dt>Dictionary containing the observation space for the agent and the target.</dt><dd><ul class="simple">
+<li><p>’agent’: gym.spaces.Box object representing the agent’s position.</p></li>
+<li><p>’target’: gym.spaces.Box object representing the target’s position.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>gym.spaces.Dict</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
@@ -416,28 +427,8 @@ info (dict): Additional information about the step.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="maze_world.envs.RandomMazeEnv">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">maze_world.envs.</span></span><span class="sig-name descname"><span class="pre">RandomMazeEnv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">render_mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maze_width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">11</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maze_height</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">11</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/maze_world/envs/random_maze.html#RandomMazeEnv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#maze_world.envs.RandomMazeEnv" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">maze_world.envs.</span></span><span class="sig-name descname"><span class="pre">RandomMazeEnv</span></span><a class="reference internal" href="../_modules/maze_world/envs/random_maze.html#RandomMazeEnv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#maze_world.envs.RandomMazeEnv" title="Permalink to this definition">#</a></dt>
 <dd><p>Extends the MazeEnv class to create random mazes of specified sizes at each reset.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>render_mode</strong> – <p>specify one of the following:</p>
-<ul>
-<li><p>None (default): no render is computed.</p></li>
-<li><p>“human”: The environment is continuously rendered in the current display or terminal, usually for human consumption. This rendering should occur during step() and render() doesn’t need to be called. Returns None.</p></li>
-<li><p>“rgb_array”: Return a single frame representing the current state of the environment. A frame is a np.ndarray with shape (x, y, 3) representing RGB values for an x-by-y pixel image.</p></li>
-<li><p>“ansi”: Return a strings (str) or StringIO.StringIO containing a terminal-style text representation for each time step. The text can include newlines and ANSI escape sequences (e.g. for colors).</p></li>
-<li><p>“rgb_array_list” and “ansi_list”: List based version of render modes are possible (except Human) through the wrapper, gymnasium.wrappers.RenderCollection that is automatically applied during gymnasium.make(…,render_mode=”rgb_array_list”). The frames collected are popped after render() is called or reset().</p></li>
-</ul>
-</p></li>
-<li><p><strong>maze_width</strong> – The width of the maze</p></li>
-<li><p><strong>maze_height</strong> – The height of the maze</p></li>
-</ul>
-</dd>
-<dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>ValueError</strong> – If the width or height of the maze is not odd.</p>
-</dd>
-</dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="maze_world.envs.RandomMazeEnv.__init__">
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">render_mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maze_width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">11</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maze_height</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">11</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/maze_world/envs/random_maze.html#RandomMazeEnv.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#maze_world.envs.RandomMazeEnv.__init__" title="Permalink to this definition">#</a></dt>
@@ -461,20 +452,6 @@ info (dict): Additional information about the step.</p>
 <dd class="field-even"><p><strong>ValueError</strong> – If the width or height of the maze is not odd.</p>
 </dd>
 </dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="maze_world.envs.RandomMazeEnv.action_space">
-<span class="sig-name descname"><span class="pre">action_space</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">spaces.Space</span><span class="p"><span class="pre">[</span></span><span class="pre">ActType</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#maze_world.envs.RandomMazeEnv.action_space" title="Permalink to this definition">#</a></dt>
-<dd><p>The following dictionary maps abstract actions from <cite>self.action_space</cite> to
-the direction we will walk in if that action is taken.
-I.e. 0 corresponds to “right”, 1 to “up” etc.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="maze_world.envs.RandomMazeEnv.observation_space">
-<span class="sig-name descname"><span class="pre">observation_space</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">spaces.Space</span><span class="p"><span class="pre">[</span></span><span class="pre">ObsType</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#maze_world.envs.RandomMazeEnv.observation_space" title="Permalink to this definition">#</a></dt>
-<dd><p>We have 4 actions, corresponding to “right”, “up”, “left”, “down”</p>
 </dd></dl>
 
 </dd></dl>
@@ -550,8 +527,6 @@ I.e. 0 corresponds to “right”, 1 to “up” etc.</p>
 </li>
 <li><a class="reference internal" href="#maze_world.envs.RandomMazeEnv"><code class="docutils literal notranslate"><span class="pre">RandomMazeEnv</span></code></a><ul>
 <li><a class="reference internal" href="#maze_world.envs.RandomMazeEnv.__init__"><code class="docutils literal notranslate"><span class="pre">RandomMazeEnv.__init__()</span></code></a></li>
-<li><a class="reference internal" href="#maze_world.envs.RandomMazeEnv.action_space"><code class="docutils literal notranslate"><span class="pre">RandomMazeEnv.action_space</span></code></a></li>
-<li><a class="reference internal" href="#maze_world.envs.RandomMazeEnv.observation_space"><code class="docutils literal notranslate"><span class="pre">RandomMazeEnv.observation_space</span></code></a></li>
 </ul>
 </li>
 </ul>

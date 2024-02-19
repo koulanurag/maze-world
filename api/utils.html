@@ -227,88 +227,101 @@
           <section id="module-maze_world.utils">
 <span id="utils"></span><h1>Utils<a class="headerlink" href="#module-maze_world.utils" title="Permalink to this heading">#</a></h1>
 <dl class="py class">
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">WilsonMazeGenerator(int,int)</span></span><a class="reference internal" href="../_modules/maze_world/utils/generate_maze.html#WilsonMazeGenerator"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
-<dd><p>Maze Generator using Wilson’s Loop Erased Random Walk Algorithm</p>
+<dt class="sig sig-object py" id="maze_world.utils.WilsonMazeGenerator">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">maze_world.utils.</span></span><span class="sig-name descname"><span class="pre">WilsonMazeGenerator</span></span><a class="reference internal" href="../_modules/maze_world/utils/generate_maze.html#WilsonMazeGenerator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#maze_world.utils.WilsonMazeGenerator" title="Permalink to this definition">#</a></dt>
+<dd><p>Maze Generator utilizing Wilson’s Loop Erased Random Walk Algorithm.</p>
 <p>Source: <a class="reference external" href="https://github.com/CaptainFl1nt/WilsonMazeGenerator">https://github.com/CaptainFl1nt/WilsonMazeGenerator</a></p>
-<p>Creates a maze generator with specified width and height.
-width: width of generated mazes
-height: height of generated mazes</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="maze_world.utils.WilsonMazeGenerator.__init__">
-<span class="sig-prename descclassname"><span class="pre">WilsonMazeGenerator.</span></span><span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">height</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/maze_world/utils/generate_maze.html#WilsonMazeGenerator.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#maze_world.utils.WilsonMazeGenerator.__init__" title="Permalink to this definition">#</a></dt>
-<dd><p>WilsonMazeGenerator(int,int) -&gt; WilsonMazeGenerator
-Creates a maze generator with specified width and height.
-width: width of generated mazes
-height: height of generated mazes</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="maze_world.utils.WilsonMazeGenerator.cut">
-<span class="sig-prename descclassname"><span class="pre">WilsonMazeGenerator.</span></span><span class="sig-name descname"><span class="pre">cut</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tuple</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/maze_world/utils/generate_maze.html#WilsonMazeGenerator.cut"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#maze_world.utils.WilsonMazeGenerator.cut" title="Permalink to this definition">#</a></dt>
-<dd><p>Sets the value of the grid at the location specified by cell
-to 1
-cell: tuple (y,x) location of where to cut</p>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">height</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/maze_world/utils/generate_maze.html#WilsonMazeGenerator.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#maze_world.utils.WilsonMazeGenerator.__init__" title="Permalink to this definition">#</a></dt>
+<dd><p>Initializes a maze generator with the specified width and height.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>height</strong> (<em>int</em>) – Height of the generated mazes.</p></li>
+<li><p><strong>width</strong> (<em>int</em>) – Width of the generated mazes.</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="maze_world.utils.WilsonMazeGenerator.generate_maze">
-<span class="sig-prename descclassname"><span class="pre">WilsonMazeGenerator.</span></span><span class="sig-name descname"><span class="pre">generate_maze</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/maze_world/utils/generate_maze.html#WilsonMazeGenerator.generate_maze"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#maze_world.utils.WilsonMazeGenerator.generate_maze" title="Permalink to this definition">#</a></dt>
-<dd><p>Generates the maze according to the Wilson Loop Erased Random
-Walk Algorithm</p>
+<span class="sig-name descname"><span class="pre">generate_maze</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/maze_world/utils/generate_maze.html#WilsonMazeGenerator.generate_maze"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#maze_world.utils.WilsonMazeGenerator.generate_maze" title="Permalink to this definition">#</a></dt>
+<dd><p>Generates the maze according to the Wilson Loop Erased Random Walk Algorithm.</p>
+<p>The algorithm works as follows:
+1. Reset the grid before generation.
+2. Choose the first cell to put in the visited list.
+3. Loop until all cells have been visited:</p>
+<blockquote>
+<div><ol class="loweralpha simple">
+<li><p>Choose a random cell to start the walk.</p></li>
+<li><p>Loop until the random walk reaches a visited cell.</p></li>
+<li><dl class="simple">
+<dt>Loop until the end of the path is reached:</dt><dd><ul class="simple">
+<li><p>Add the cell to visited and cut into the maze.</p></li>
+<li><p>Follow the direction to the next cell.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ol>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="maze_world.utils.WilsonMazeGenerator.get_grid">
-<span class="sig-prename descclassname"><span class="pre">WilsonMazeGenerator.</span></span><span class="sig-name descname"><span class="pre">get_grid</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="reference internal" href="../_modules/maze_world/utils/generate_maze.html#WilsonMazeGenerator.get_grid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#maze_world.utils.WilsonMazeGenerator.get_grid" title="Permalink to this definition">#</a></dt>
-<dd><p>returns the maze grid</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">WilsonMazeGenerator.get_next_cell(tuple,int,int)</span> <span class="pre">-&gt;</span> <span class="pre">tuple</span></span><a class="reference internal" href="../_modules/maze_world/utils/generate_maze.html#WilsonMazeGenerator.get_next_cell"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
-<dd><p>Outputs the next cell when moved a distance fact in the the
-direction specified by dirNum from the initial cell.
-cell: tuple (y,x) representing position of initial cell
-dirNum: int with values 0,1,2,3
-fact: int distance to next cell</p>
+<span class="sig-name descname"><span class="pre">get_grid</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/maze_world/utils/generate_maze.html#WilsonMazeGenerator.get_grid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#maze_world.utils.WilsonMazeGenerator.get_grid" title="Permalink to this definition">#</a></dt>
+<dd><p>Returns the maze grid.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The maze grid.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="maze_world.utils.WilsonMazeGenerator.get_solution">
-<span class="sig-prename descclassname"><span class="pre">WilsonMazeGenerator.</span></span><span class="sig-name descname"><span class="pre">get_solution</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="reference internal" href="../_modules/maze_world/utils/generate_maze.html#WilsonMazeGenerator.get_solution"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#maze_world.utils.WilsonMazeGenerator.get_solution" title="Permalink to this definition">#</a></dt>
-<dd><p>Returns the solution to the maze as a list
-of tuples</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="maze_world.utils.WilsonMazeGenerator.initialize_grid">
-<span class="sig-prename descclassname"><span class="pre">WilsonMazeGenerator.</span></span><span class="sig-name descname"><span class="pre">initialize_grid</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/maze_world/utils/generate_maze.html#WilsonMazeGenerator.initialize_grid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#maze_world.utils.WilsonMazeGenerator.initialize_grid" title="Permalink to this definition">#</a></dt>
-<dd><p>Resets the maze grid to blank before generating a maze.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="maze_world.utils.WilsonMazeGenerator.is_valid_direction">
-<span class="sig-prename descclassname"><span class="pre">WilsonMazeGenerator.</span></span><span class="sig-name descname"><span class="pre">is_valid_direction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cell</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dirNum</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/maze_world/utils/generate_maze.html#WilsonMazeGenerator.is_valid_direction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#maze_world.utils.WilsonMazeGenerator.is_valid_direction" title="Permalink to this definition">#</a></dt>
-<dd><p>WilsonMazeGenerator(tuple,int) -&gt; boolean
-Checks if the adjacent cell in the direction specified by
-dirNum is within the grid
-cell: tuple (y,x) representing position of initial cell
-dirNum: int with values 0,1,2,3</p>
+<span class="sig-name descname"><span class="pre">get_solution</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/maze_world/utils/generate_maze.html#WilsonMazeGenerator.get_solution"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#maze_world.utils.WilsonMazeGenerator.get_solution" title="Permalink to this definition">#</a></dt>
+<dd><p>Returns the solution to the maze as a list of tuples.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The solution to the maze.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="maze_world.utils.WilsonMazeGenerator.show_solution">
-<span class="sig-prename descclassname"><span class="pre">WilsonMazeGenerator.</span></span><span class="sig-name descname"><span class="pre">show_solution</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">boolean</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/maze_world/utils/generate_maze.html#WilsonMazeGenerator.show_solution"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#maze_world.utils.WilsonMazeGenerator.show_solution" title="Permalink to this definition">#</a></dt>
-<dd><p>Set whether WilsonMazeGenerator.__str__() outputs the
-solution or not</p>
+<span class="sig-name descname"><span class="pre">show_solution</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">show</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/maze_world/utils/generate_maze.html#WilsonMazeGenerator.show_solution"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#maze_world.utils.WilsonMazeGenerator.show_solution" title="Permalink to this definition">#</a></dt>
+<dd><p>Sets whether the <cite>__str__()</cite> method outputs the solution or not.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>show</strong> (<em>bool</em>) – Boolean value indicating whether to show the solution or not.</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="maze_world.utils.WilsonMazeGenerator.solve_maze">
-<span class="sig-prename descclassname"><span class="pre">WilsonMazeGenerator.</span></span><span class="sig-name descname"><span class="pre">solve_maze</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/maze_world/utils/generate_maze.html#WilsonMazeGenerator.solve_maze"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#maze_world.utils.WilsonMazeGenerator.solve_maze" title="Permalink to this definition">#</a></dt>
-<dd><p>Solves the maze according to the Wilson Loop Erased Random
-Walk Algorithm</p>
+<span class="sig-name descname"><span class="pre">solve_maze</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/maze_world/utils/generate_maze.html#WilsonMazeGenerator.solve_maze"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#maze_world.utils.WilsonMazeGenerator.solve_maze" title="Permalink to this definition">#</a></dt>
+<dd><p>Solves the maze according to the Wilson Loop Erased Random Walk Algorithm</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
@@ -385,15 +398,15 @@ Walk Algorithm</p>
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">Utils</a><ul>
+<li><a class="reference internal" href="#maze_world.utils.WilsonMazeGenerator"><code class="docutils literal notranslate"><span class="pre">WilsonMazeGenerator</span></code></a><ul>
 <li><a class="reference internal" href="#maze_world.utils.WilsonMazeGenerator.__init__"><code class="docutils literal notranslate"><span class="pre">WilsonMazeGenerator.__init__()</span></code></a></li>
-<li><a class="reference internal" href="#maze_world.utils.WilsonMazeGenerator.cut"><code class="docutils literal notranslate"><span class="pre">WilsonMazeGenerator.cut()</span></code></a></li>
 <li><a class="reference internal" href="#maze_world.utils.WilsonMazeGenerator.generate_maze"><code class="docutils literal notranslate"><span class="pre">WilsonMazeGenerator.generate_maze()</span></code></a></li>
 <li><a class="reference internal" href="#maze_world.utils.WilsonMazeGenerator.get_grid"><code class="docutils literal notranslate"><span class="pre">WilsonMazeGenerator.get_grid()</span></code></a></li>
 <li><a class="reference internal" href="#maze_world.utils.WilsonMazeGenerator.get_solution"><code class="docutils literal notranslate"><span class="pre">WilsonMazeGenerator.get_solution()</span></code></a></li>
-<li><a class="reference internal" href="#maze_world.utils.WilsonMazeGenerator.initialize_grid"><code class="docutils literal notranslate"><span class="pre">WilsonMazeGenerator.initialize_grid()</span></code></a></li>
-<li><a class="reference internal" href="#maze_world.utils.WilsonMazeGenerator.is_valid_direction"><code class="docutils literal notranslate"><span class="pre">WilsonMazeGenerator.is_valid_direction()</span></code></a></li>
 <li><a class="reference internal" href="#maze_world.utils.WilsonMazeGenerator.show_solution"><code class="docutils literal notranslate"><span class="pre">WilsonMazeGenerator.show_solution()</span></code></a></li>
 <li><a class="reference internal" href="#maze_world.utils.WilsonMazeGenerator.solve_maze"><code class="docutils literal notranslate"><span class="pre">WilsonMazeGenerator.solve_maze()</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#maze_world.utils.maze_dijkstra_solver"><code class="docutils literal notranslate"><span class="pre">maze_dijkstra_solver()</span></code></a></li>
 </ul>
 </li>

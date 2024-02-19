@@ -253,6 +253,11 @@ through the <a class="reference internal" href="#maze_world.envs.MazeEnv.step" t
 </div>
 </dd>
 </dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="maze_world.envs.MazeEnv.metadata">
+<span class="sig-name descname"><span class="pre">metadata</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'render_fps':</span> <span class="pre">4,</span> <span class="pre">'render_modes':</span> <span class="pre">['human',</span> <span class="pre">'rgb_array']}</span></em><a class="headerlink" href="#maze_world.envs.MazeEnv.metadata" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="maze_world.envs.MazeEnv.__init__">
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">generate_maze_fn</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">render_mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maze_width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maze_height</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/maze_world/envs/maze.html#MazeEnv.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#maze_world.envs.MazeEnv.__init__" title="Permalink to this definition">#</a></dt>
@@ -285,7 +290,15 @@ through the <a class="reference internal" href="#maze_world.envs.MazeEnv.step" t
 <dl class="py property">
 <dt class="sig sig-object py" id="maze_world.envs.MazeEnv.action_space">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">action_space</span></span><a class="headerlink" href="#maze_world.envs.MazeEnv.action_space" title="Permalink to this definition">#</a></dt>
-<dd><p>[“right”, “up”, “left”, “down”].</p>
+<dd><dl class="simple">
+<dt>Specifies available discrete action for the environment, where</dt><dd><ol class="arabic simple" start="0">
+<li><p>“right”</p></li>
+<li><p>“up”</p></li>
+<li><p>“left”</p></li>
+<li><p>“down”</p></li>
+</ol>
+</dd>
+</dl>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>Discrete action space object representing the possible actions.</p>
@@ -293,23 +306,8 @@ through the <a class="reference internal" href="#maze_world.envs.MazeEnv.step" t
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>gym.spaces.Discrete</p>
 </dd>
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Actions available corresponding to each index</p>
-</dd>
 </dl>
 </dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="maze_world.envs.MazeEnv.close">
-<span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/maze_world/envs/maze.html#MazeEnv.close"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#maze_world.envs.MazeEnv.close" title="Permalink to this definition">#</a></dt>
-<dd><p>Closes the environment.</p>
-<p>This method shuts down the Pygame display if it was initialized.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="maze_world.envs.MazeEnv.metadata">
-<span class="sig-name descname"><span class="pre">metadata</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'render_fps':</span> <span class="pre">4,</span> <span class="pre">'render_modes':</span> <span class="pre">['human',</span> <span class="pre">'rgb_array']}</span></em><a class="headerlink" href="#maze_world.envs.MazeEnv.metadata" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="maze_world.envs.MazeEnv.observation_space">
@@ -336,41 +334,6 @@ through the <a class="reference internal" href="#maze_world.envs.MazeEnv.step" t
 <dd class="field-even"><p>gym.spaces.Dict</p>
 </dd>
 </dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="maze_world.envs.MazeEnv.render">
-<span class="sig-name descname"><span class="pre">render</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/maze_world/envs/maze.html#MazeEnv.render"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#maze_world.envs.MazeEnv.render" title="Permalink to this definition">#</a></dt>
-<dd><p>Compute the render frames as specified by <code class="xref py py-attr docutils literal notranslate"><span class="pre">render_mode</span></code> during the initialization of the environment.</p>
-<p>The environment’s <a class="reference internal" href="#maze_world.envs.MazeEnv.metadata" title="maze_world.envs.MazeEnv.metadata"><code class="xref py py-attr docutils literal notranslate"><span class="pre">metadata</span></code></a> render modes (<cite>env.metadata[“render_modes”]</cite>) should contain the possible
-ways to implement the render modes. In addition, list versions for most render modes is achieved through
-<cite>gymnasium.make</cite> which automatically applies a wrapper to collect rendered frames.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>As the <code class="xref py py-attr docutils literal notranslate"><span class="pre">render_mode</span></code> is known during <code class="docutils literal notranslate"><span class="pre">__init__</span></code>, the objects used to render the environment state
-should be initialised in <code class="docutils literal notranslate"><span class="pre">__init__</span></code>.</p>
-</div>
-<p>By convention, if the <code class="xref py py-attr docutils literal notranslate"><span class="pre">render_mode</span></code> is:</p>
-<ul class="simple">
-<li><p>None (default): no render is computed.</p></li>
-<li><p>“human”: The environment is continuously rendered in the current display or terminal, usually for human consumption.
-This rendering should occur during <a class="reference internal" href="#maze_world.envs.MazeEnv.step" title="maze_world.envs.MazeEnv.step"><code class="xref py py-meth docutils literal notranslate"><span class="pre">step()</span></code></a> and <a class="reference internal" href="#maze_world.envs.MazeEnv.render" title="maze_world.envs.MazeEnv.render"><code class="xref py py-meth docutils literal notranslate"><span class="pre">render()</span></code></a> doesn’t need to be called. Returns <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
-<li><p>“rgb_array”: Return a single frame representing the current state of the environment.
-A frame is a <code class="docutils literal notranslate"><span class="pre">np.ndarray</span></code> with shape <code class="docutils literal notranslate"><span class="pre">(x,</span> <span class="pre">y,</span> <span class="pre">3)</span></code> representing RGB values for an x-by-y pixel image.</p></li>
-<li><p>“ansi”: Return a strings (<code class="docutils literal notranslate"><span class="pre">str</span></code>) or <code class="docutils literal notranslate"><span class="pre">StringIO.StringIO</span></code> containing a terminal-style text representation
-for each time step. The text can include newlines and ANSI escape sequences (e.g. for colors).</p></li>
-<li><p>“rgb_array_list” and “ansi_list”: List based version of render modes are possible (except Human) through the
-wrapper, <code class="xref py py-class docutils literal notranslate"><span class="pre">gymnasium.wrappers.RenderCollection</span></code> that is automatically applied during <code class="docutils literal notranslate"><span class="pre">gymnasium.make(...,</span> <span class="pre">render_mode=&quot;rgb_array_list&quot;)</span></code>.
-The frames collected are popped after <a class="reference internal" href="#maze_world.envs.MazeEnv.render" title="maze_world.envs.MazeEnv.render"><code class="xref py py-meth docutils literal notranslate"><span class="pre">render()</span></code></a> is called or <a class="reference internal" href="#maze_world.envs.MazeEnv.reset" title="maze_world.envs.MazeEnv.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a>.</p></li>
-</ul>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Make sure that your class’s <a class="reference internal" href="#maze_world.envs.MazeEnv.metadata" title="maze_world.envs.MazeEnv.metadata"><code class="xref py py-attr docutils literal notranslate"><span class="pre">metadata</span></code></a> <code class="docutils literal notranslate"><span class="pre">&quot;render_modes&quot;</span></code> key includes the list of supported modes.</p>
-</div>
-<div class="versionchanged">
-<p><span class="versionmodified changed">Changed in version 0.25.0: </span>The render function was changed to no longer accept parameters, rather these parameters should be specified
-in the environment initialised, i.e., <code class="docutils literal notranslate"><span class="pre">gymnasium.make(&quot;CartPole-v1&quot;,</span> <span class="pre">render_mode=&quot;human&quot;)</span></code></p>
-</div>
 </dd></dl>
 
 <dl class="py method">
@@ -409,17 +372,32 @@ in the environment initialised, i.e., <code class="docutils literal notranslate"
 <dd class="field-odd"><p><strong>action</strong> (<em>int</em>) – The action to take.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>A tuple containing:
-- observation: Agent’s current observation of the environment.
-- reward (float): Reward received after taking the step.
-- terminated (bool): Whether the episode has terminated or not.
-- truncated (bool): Whether the episode has been truncated due to max episode steps.
-- info (dict): Additional information about the step.</p>
+<dd class="field-even"><p><ul class="simple">
+<li><p>observation: Agent’s current observation of the environment.</p></li>
+<li><p>reward (float): Reward received after taking the step.</p></li>
+<li><p>terminated (bool): Whether the episode has terminated or not.</p></li>
+<li><p>truncated (bool): Whether the episode has been truncated due to max episode steps.</p></li>
+<li><p>info (dict): Additional information about the step.</p></li>
+</ul>
+</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>tuple</p>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="maze_world.envs.MazeEnv.render">
+<span class="sig-name descname"><span class="pre">render</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/maze_world/envs/maze.html#MazeEnv.render"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#maze_world.envs.MazeEnv.render" title="Permalink to this definition">#</a></dt>
+<dd><p>Compute the render frames as specified by <cite>render_mode</cite> during the initialization of the environment.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="maze_world.envs.MazeEnv.close">
+<span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/maze_world/envs/maze.html#MazeEnv.close"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#maze_world.envs.MazeEnv.close" title="Permalink to this definition">#</a></dt>
+<dd><p>Closes the environment.</p>
+<p>This method shuts down the Pygame display if it was initialized.</p>
 </dd></dl>
 
 </dd></dl>
@@ -521,14 +499,14 @@ in the environment initialised, i.e., <code class="docutils literal notranslate"
             <ul>
 <li><a class="reference internal" href="#">Environment</a><ul>
 <li><a class="reference internal" href="#maze_world.envs.MazeEnv"><code class="docutils literal notranslate"><span class="pre">MazeEnv</span></code></a><ul>
+<li><a class="reference internal" href="#maze_world.envs.MazeEnv.metadata"><code class="docutils literal notranslate"><span class="pre">MazeEnv.metadata</span></code></a></li>
 <li><a class="reference internal" href="#maze_world.envs.MazeEnv.__init__"><code class="docutils literal notranslate"><span class="pre">MazeEnv.__init__()</span></code></a></li>
 <li><a class="reference internal" href="#maze_world.envs.MazeEnv.action_space"><code class="docutils literal notranslate"><span class="pre">MazeEnv.action_space</span></code></a></li>
-<li><a class="reference internal" href="#maze_world.envs.MazeEnv.close"><code class="docutils literal notranslate"><span class="pre">MazeEnv.close()</span></code></a></li>
-<li><a class="reference internal" href="#maze_world.envs.MazeEnv.metadata"><code class="docutils literal notranslate"><span class="pre">MazeEnv.metadata</span></code></a></li>
 <li><a class="reference internal" href="#maze_world.envs.MazeEnv.observation_space"><code class="docutils literal notranslate"><span class="pre">MazeEnv.observation_space</span></code></a></li>
-<li><a class="reference internal" href="#maze_world.envs.MazeEnv.render"><code class="docutils literal notranslate"><span class="pre">MazeEnv.render()</span></code></a></li>
 <li><a class="reference internal" href="#maze_world.envs.MazeEnv.reset"><code class="docutils literal notranslate"><span class="pre">MazeEnv.reset()</span></code></a></li>
 <li><a class="reference internal" href="#maze_world.envs.MazeEnv.step"><code class="docutils literal notranslate"><span class="pre">MazeEnv.step()</span></code></a></li>
+<li><a class="reference internal" href="#maze_world.envs.MazeEnv.render"><code class="docutils literal notranslate"><span class="pre">MazeEnv.render()</span></code></a></li>
+<li><a class="reference internal" href="#maze_world.envs.MazeEnv.close"><code class="docutils literal notranslate"><span class="pre">MazeEnv.close()</span></code></a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#maze_world.envs.RandomMazeEnv"><code class="docutils literal notranslate"><span class="pre">RandomMazeEnv</span></code></a><ul>

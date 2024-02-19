@@ -226,6 +226,51 @@
         <article role="main">
           <section id="module-maze_world.utils">
 <span id="utils"></span><h1>Utils<a class="headerlink" href="#module-maze_world.utils" title="Permalink to this heading">#</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="maze_world.utils.maze_dijkstra_solver">
+<span class="sig-prename descclassname"><span class="pre">maze_world.utils.</span></span><span class="sig-name descname"><span class="pre">maze_dijkstra_solver</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">impassable_array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">motions</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_idx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">goal_idx</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/maze_world/utils/solver.html#maze_dijkstra_solver"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#maze_world.utils.maze_dijkstra_solver" title="Permalink to this definition">#</a></dt>
+<dd><p>Solves a maze using Dijkstra’s algorithm.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>impassable_array</strong> (<em>array_like</em>) – Array representing impassable cells in the maze.</p></li>
+<li><p><strong>motions</strong> (<em>array_like</em>) – List of possible motions in the maze.</p></li>
+<li><p><strong>start_idx</strong> (<em>tuple</em>) – Initial position of the agent (x, y).</p></li>
+<li><p><strong>goal_idx</strong> (<em>tuple</em>) – Position of the goal cell (x, y).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>List of actions to reach the goal from the start position.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+<dt class="field-even">Example<span class="colon">:</span></dt>
+<dd class="field-even"><div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">gymnasium</span> <span class="k">as</span> <span class="nn">gym</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">env</span> <span class="o">=</span> <span class="n">gym</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="s2">&quot;maze_world:RandomMaze-11x11-v0&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">observation</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">reset</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="p">{})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">episode_score</span> <span class="o">=</span> <span class="mf">0.0</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">optimal_actions</span> <span class="o">=</span> <span class="n">maze_dijkstra_solver</span><span class="p">(</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">env</span><span class="o">.</span><span class="n">unwrapped</span><span class="o">.</span><span class="n">maze_map</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">bool</span><span class="p">),</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">env</span><span class="o">.</span><span class="n">unwrapped</span><span class="o">.</span><span class="n">_action_to_direction</span><span class="o">.</span><span class="n">values</span><span class="p">(),</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">info</span><span class="p">[</span><span class="s2">&quot;agent&quot;</span><span class="p">],</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">info</span><span class="p">[</span><span class="s2">&quot;target&quot;</span><span class="p">],</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">action</span> <span class="ow">in</span> <span class="n">optimal_actions</span><span class="p">:</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">observation</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">terminated</span><span class="p">,</span> <span class="n">truncated</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">action</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">episode_score</span> <span class="o">+=</span> <span class="n">reward</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="k">if</span> <span class="n">terminated</span> <span class="ow">or</span> <span class="n">truncated</span><span class="p">:</span>
+<span class="gp">&gt;&gt;&gt; </span>        <span class="k">break</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">env</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Success&quot;</span> <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="n">info</span><span class="p">[</span><span class="s2">&quot;agent&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">info</span><span class="p">[</span><span class="s2">&quot;target&quot;</span><span class="p">])</span> <span class="k">else</span> <span class="s2">&quot;Failure&quot;</span><span class="p">)</span>
+<span class="go">Success</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py class">
 <dt class="sig sig-object py" id="maze_world.utils.WilsonMazeGenerator">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">maze_world.utils.</span></span><span class="sig-name descname"><span class="pre">WilsonMazeGenerator</span></span><a class="reference internal" href="../_modules/maze_world/utils/generate_maze.html#WilsonMazeGenerator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#maze_world.utils.WilsonMazeGenerator" title="Permalink to this definition">#</a></dt>
@@ -241,40 +286,6 @@
 <li><p><strong>height</strong> (<em>int</em>) – Height of the generated mazes.</p></li>
 <li><p><strong>width</strong> (<em>int</em>) – Width of the generated mazes.</p></li>
 </ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="maze_world.utils.WilsonMazeGenerator.generate_maze">
-<span class="sig-name descname"><span class="pre">generate_maze</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/maze_world/utils/generate_maze.html#WilsonMazeGenerator.generate_maze"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#maze_world.utils.WilsonMazeGenerator.generate_maze" title="Permalink to this definition">#</a></dt>
-<dd><p>Generates the maze according to the Wilson Loop Erased Random Walk Algorithm.</p>
-<dl class="simple">
-<dt>The algorithm works as follows:</dt><dd><ol class="arabic simple">
-<li><p>Reset the grid before generation.</p></li>
-<li><p>Choose the first cell to put in the visited list.</p></li>
-<li><dl class="simple">
-<dt>Loop until all cells have been visited:</dt><dd><ol class="loweralpha simple">
-<li><p>Choose a random cell to start the walk.</p></li>
-<li><p>Loop until the random walk reaches a visited cell.</p></li>
-<li><dl class="simple">
-<dt>Loop until the end of the path is reached:</dt><dd><ul class="simple">
-<li><p>Add the cell to visited and cut into the maze.</p></li>
-<li><p>Follow the direction to the next cell.</p></li>
-</ul>
-</dd>
-</dl>
-</li>
-</ol>
-</dd>
-</dl>
-</li>
-</ol>
-</dd>
-</dl>
-<dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>None</p>
 </dd>
 </dl>
 </dd></dl>
@@ -319,6 +330,40 @@
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="maze_world.utils.WilsonMazeGenerator.generate_maze">
+<span class="sig-name descname"><span class="pre">generate_maze</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/maze_world/utils/generate_maze.html#WilsonMazeGenerator.generate_maze"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#maze_world.utils.WilsonMazeGenerator.generate_maze" title="Permalink to this definition">#</a></dt>
+<dd><p>Generates the maze according to the Wilson Loop Erased Random Walk Algorithm.</p>
+<dl class="simple">
+<dt>The algorithm works as follows:</dt><dd><ol class="arabic simple">
+<li><p>Reset the grid before generation.</p></li>
+<li><p>Choose the first cell to put in the visited list.</p></li>
+<li><dl class="simple">
+<dt>Loop until all cells have been visited:</dt><dd><ol class="loweralpha simple">
+<li><p>Choose a random cell to start the walk.</p></li>
+<li><p>Loop until the random walk reaches a visited cell.</p></li>
+<li><dl class="simple">
+<dt>Loop until the end of the path is reached:</dt><dd><ul class="simple">
+<li><p>Add the cell to visited and cut into the maze.</p></li>
+<li><p>Follow the direction to the next cell.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ol>
+</dd>
+</dl>
+</li>
+</ol>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="maze_world.utils.WilsonMazeGenerator.solve_maze">
 <span class="sig-name descname"><span class="pre">solve_maze</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/maze_world/utils/generate_maze.html#WilsonMazeGenerator.solve_maze"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#maze_world.utils.WilsonMazeGenerator.solve_maze" title="Permalink to this definition">#</a></dt>
 <dd><p>Solves the maze according to the Wilson Loop Erased Random Walk Algorithm</p>
@@ -329,51 +374,6 @@
 </dl>
 </dd></dl>
 
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="maze_world.utils.maze_dijkstra_solver">
-<span class="sig-prename descclassname"><span class="pre">maze_world.utils.</span></span><span class="sig-name descname"><span class="pre">maze_dijkstra_solver</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">impassable_array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">motions</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_idx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">goal_idx</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/maze_world/utils/solver.html#maze_dijkstra_solver"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#maze_world.utils.maze_dijkstra_solver" title="Permalink to this definition">#</a></dt>
-<dd><p>Solves a maze using Dijkstra’s algorithm.</p>
-<dl class="field-list">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>impassable_array</strong> (<em>array_like</em>) – Array representing impassable cells in the maze.</p></li>
-<li><p><strong>motions</strong> (<em>array_like</em>) – List of possible motions in the maze.</p></li>
-<li><p><strong>start_idx</strong> (<em>tuple</em>) – Initial position of the agent (x, y).</p></li>
-<li><p><strong>goal_idx</strong> (<em>tuple</em>) – Position of the goal cell (x, y).</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>List of actions to reach the goal from the start position.</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>list</p>
-</dd>
-<dt class="field-even">Example<span class="colon">:</span></dt>
-<dd class="field-even"><div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">gymnasium</span> <span class="k">as</span> <span class="nn">gym</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">env</span> <span class="o">=</span> <span class="n">gym</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="s2">&quot;maze_world:RandomMaze-11x11-v0&quot;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">observation</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">reset</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="p">{})</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">episode_score</span> <span class="o">=</span> <span class="mf">0.0</span>
-<span class="gp">&gt;&gt;&gt;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">optimal_actions</span> <span class="o">=</span> <span class="n">maze_dijkstra_solver</span><span class="p">(</span>
-<span class="gp">&gt;&gt;&gt; </span>    <span class="n">env</span><span class="o">.</span><span class="n">unwrapped</span><span class="o">.</span><span class="n">maze_map</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">bool</span><span class="p">),</span>
-<span class="gp">&gt;&gt;&gt; </span>    <span class="n">env</span><span class="o">.</span><span class="n">unwrapped</span><span class="o">.</span><span class="n">_action_to_direction</span><span class="o">.</span><span class="n">values</span><span class="p">(),</span>
-<span class="gp">&gt;&gt;&gt; </span>    <span class="n">info</span><span class="p">[</span><span class="s2">&quot;agent&quot;</span><span class="p">],</span>
-<span class="gp">&gt;&gt;&gt; </span>    <span class="n">info</span><span class="p">[</span><span class="s2">&quot;target&quot;</span><span class="p">],</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">action</span> <span class="ow">in</span> <span class="n">optimal_actions</span><span class="p">:</span>
-<span class="gp">&gt;&gt;&gt; </span>    <span class="n">observation</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">terminated</span><span class="p">,</span> <span class="n">truncated</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">action</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span>    <span class="n">episode_score</span> <span class="o">+=</span> <span class="n">reward</span>
-<span class="gp">&gt;&gt;&gt; </span>    <span class="k">if</span> <span class="n">terminated</span> <span class="ow">or</span> <span class="n">truncated</span><span class="p">:</span>
-<span class="gp">&gt;&gt;&gt; </span>        <span class="k">break</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">env</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Success&quot;</span> <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="n">info</span><span class="p">[</span><span class="s2">&quot;agent&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">info</span><span class="p">[</span><span class="s2">&quot;target&quot;</span><span class="p">])</span> <span class="k">else</span> <span class="s2">&quot;Failure&quot;</span><span class="p">)</span>
-<span class="go">Success</span>
-</pre></div>
-</div>
-</dd>
-</dl>
 </dd></dl>
 
 </section>
@@ -426,16 +426,16 @@
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">Utils</a><ul>
+<li><a class="reference internal" href="#maze_world.utils.maze_dijkstra_solver"><code class="docutils literal notranslate"><span class="pre">maze_dijkstra_solver()</span></code></a></li>
 <li><a class="reference internal" href="#maze_world.utils.WilsonMazeGenerator"><code class="docutils literal notranslate"><span class="pre">WilsonMazeGenerator</span></code></a><ul>
 <li><a class="reference internal" href="#maze_world.utils.WilsonMazeGenerator.__init__"><code class="docutils literal notranslate"><span class="pre">WilsonMazeGenerator.__init__()</span></code></a></li>
-<li><a class="reference internal" href="#maze_world.utils.WilsonMazeGenerator.generate_maze"><code class="docutils literal notranslate"><span class="pre">WilsonMazeGenerator.generate_maze()</span></code></a></li>
 <li><a class="reference internal" href="#maze_world.utils.WilsonMazeGenerator.get_grid"><code class="docutils literal notranslate"><span class="pre">WilsonMazeGenerator.get_grid()</span></code></a></li>
 <li><a class="reference internal" href="#maze_world.utils.WilsonMazeGenerator.get_solution"><code class="docutils literal notranslate"><span class="pre">WilsonMazeGenerator.get_solution()</span></code></a></li>
 <li><a class="reference internal" href="#maze_world.utils.WilsonMazeGenerator.show_solution"><code class="docutils literal notranslate"><span class="pre">WilsonMazeGenerator.show_solution()</span></code></a></li>
+<li><a class="reference internal" href="#maze_world.utils.WilsonMazeGenerator.generate_maze"><code class="docutils literal notranslate"><span class="pre">WilsonMazeGenerator.generate_maze()</span></code></a></li>
 <li><a class="reference internal" href="#maze_world.utils.WilsonMazeGenerator.solve_maze"><code class="docutils literal notranslate"><span class="pre">WilsonMazeGenerator.solve_maze()</span></code></a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#maze_world.utils.maze_dijkstra_solver"><code class="docutils literal notranslate"><span class="pre">maze_dijkstra_solver()</span></code></a></li>
 </ul>
 </li>
 </ul>

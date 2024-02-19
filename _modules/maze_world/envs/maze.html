@@ -305,7 +305,11 @@
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">action_space</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Actions available corresponding to each index: [&quot;right&quot;, &quot;up&quot;, &quot;left&quot;, &quot;down&quot;].</span>
+<span class="sd">        Specifies available discrete action for the environment, where</span>
+<span class="sd">         0. &quot;right&quot;</span>
+<span class="sd">         1. &quot;up&quot;</span>
+<span class="sd">         2. &quot;left&quot;</span>
+<span class="sd">         3. &quot;down&quot;</span>
 
 <span class="sd">        :return: Discrete action space object representing the possible actions.</span>
 <span class="sd">        :rtype: gym.spaces.Discrete</span>
@@ -424,7 +428,7 @@
 <span class="sd">        :param action: The action to take.</span>
 <span class="sd">        :type action: int</span>
 
-<span class="sd">        :return: A tuple containing:</span>
+<span class="sd">        :return:</span>
 <span class="sd">            - observation: Agent&#39;s current observation of the environment.</span>
 <span class="sd">            - reward (float): Reward received after taking the step.</span>
 <span class="sd">            - terminated (bool): Whether the episode has terminated or not.</span>
@@ -461,6 +465,9 @@
         <span class="k">return</span> <span class="n">observation</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">terminated</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="n">info</span></div>
 
 <div class="viewcode-block" id="MazeEnv.render"><a class="viewcode-back" href="../../../api/environment.html#maze_world.envs.MazeEnv.render">[docs]</a>    <span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Compute the render frames as specified by `render_mode` during the initialization of the environment.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">render_mode</span> <span class="o">==</span> <span class="s2">&quot;rgb_array&quot;</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_render_frame</span><span class="p">()</span></div>
 

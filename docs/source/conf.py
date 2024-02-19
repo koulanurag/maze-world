@@ -97,7 +97,7 @@ autodoc_class_signature = "mixed"
 autodoc_default_options = {
     "member-order": "alphabetical",
     "special-members": "__init__",
-    "undoc-members": True,
+    "undoc-members": False,
     "exclude-members": "__weakref__",
 }
 

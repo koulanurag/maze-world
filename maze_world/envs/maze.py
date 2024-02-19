@@ -73,39 +73,6 @@ class MazeEnv(gym.Env):
             maze_height * self._window_pixel_size,
         )
 
-        # Id of the elements in 2d maze:
-        # 0 => floor
-        # 1 => wall
-        # 2 => agent
-        self.observation_space = spaces.Dict(
-            {
-                "agent": spaces.Box(
-                    low=np.zeros((self.maze_height, self.maze_width)),
-                    high=np.ones((self.maze_height, self.maze_width)) * 2,
-                    shape=(
-                        self.maze_height,
-                        self.maze_width,
-                    ),
-                    dtype=int,
-                ),
-                "target": spaces.Box(
-                    low=np.zeros((self.maze_height, self.maze_width)),
-                    high=np.ones((self.maze_height, self.maze_width)) * 2,
-                    shape=(
-                        self.maze_height,
-                        self.maze_width,
-                    ),
-                    dtype=int,
-                ),
-            }
-        )
-
-        """
-            We have 4 actions, corresponding to "right", "up", "left", "down"
-        """
-
-        self.action_space = spaces.Discrete(4)
-
         """
         The following dictionary maps abstract actions from `self.action_space` to
         the direction we will walk in if that action is taken.
@@ -131,6 +98,58 @@ class MazeEnv(gym.Env):
         """
         self._window = None
         self._clock = None
+
+    @property
+    def action_space(self):
+        """
+        Returns a discrete action space with 4 actions: "right", "up", "left", "down".
+
+        Returns:
+            gym.spaces.Discrete: Discrete action space object representing the possible actions.
+        """
+        return spaces.Discrete(4)
+
+    @property
+    def observation_space(self):
+        """
+        Returns a dictionary defining the observation space of the 2D maze environment.
+
+        The observation space includes two elements:
+        - 'agent': Represents the position of the agent in the maze.
+        - 'target': Represents the position of the target in the maze.
+
+        In the 2D maze:
+            - 0 corresponds to an empty floor.
+            - 1 corresponds to a wall.
+            - 2 corresponds to the agent or the target.
+
+        Returns:
+            gym.spaces.Dict: Dictionary containing the observation space for the agent and the target.
+                - 'agent': gym.spaces.Box object representing the agent's position.
+                - 'target': gym.spaces.Box object representing the target's position.
+        """
+        return spaces.Dict(
+            {
+                "agent": spaces.Box(
+                    low=np.zeros((self.maze_height, self.maze_width)),
+                    high=np.ones((self.maze_height, self.maze_width)) * 2,
+                    shape=(
+                        self.maze_height,
+                        self.maze_width,
+                    ),
+                    dtype=int,
+                ),
+                "target": spaces.Box(
+                    low=np.zeros((self.maze_height, self.maze_width)),
+                    high=np.ones((self.maze_height, self.maze_width)) * 2,
+                    shape=(
+                        self.maze_height,
+                        self.maze_width,
+                    ),
+                    dtype=int,
+                ),
+            }
+        )
 
     def _get_obs(self):
         agent_maze = copy(self.maze_map)

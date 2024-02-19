@@ -95,7 +95,7 @@ autodoc_typehints = "description"
 autodoc_class_signature = "separated"
 
 autodoc_default_options = {
-    "member-order": "alphabetical",
+    "member-order": "bysource",
     "special-members": "__init__",
     "undoc-members": False,
     "exclude-members": "__weakref__",

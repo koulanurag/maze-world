@@ -4,7 +4,7 @@ import setuptools
 from setuptools import setup
 
 extras = {
-    "test": ["pytest<8.0.0", "pytest_cases"],
+    "test": ["pytest<8.0.0", "pytest_cases", "xdoctest", "pytest-cov"],
     "develop": ["black", "imageio", "jupyter", "black[jupyter]"],
     "docs": [
         "Sphinx<6.0,>=4.0",

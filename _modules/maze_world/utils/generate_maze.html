@@ -220,9 +220,10 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Initializes a maze generator with the specified width and height.</span>
 
-<span class="sd">        Args:</span>
-<span class="sd">            height (int): Height of the generated mazes.</span>
-<span class="sd">            width (int): Width of the generated mazes.</span>
+<span class="sd">        :param height: Height of the generated mazes.</span>
+<span class="sd">        :type height: int</span>
+<span class="sd">        :param width: Width of the generated mazes.</span>
+<span class="sd">        :type width: int</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">width</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="n">width</span> <span class="o">//</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>  <span class="c1"># Make width odd</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">height</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="n">height</span> <span class="o">//</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>  <span class="c1"># Make height odd</span>
@@ -251,8 +252,8 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns a string representation of the maze grid.</span>
 
-<span class="sd">        Returns:</span>
-<span class="sd">            str: String representation of the grid.</span>
+<span class="sd">        :return: String representation of the grid.</span>
+<span class="sd">        :rtype: str</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">out</span> <span class="o">=</span> <span class="s2">&quot;##&quot;</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">width</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">height</span><span class="p">):</span>
@@ -272,10 +273,10 @@
 
 <div class="viewcode-block" id="WilsonMazeGenerator.get_grid"><a class="viewcode-back" href="../../../api/utils.html#maze_world.utils.WilsonMazeGenerator.get_grid">[docs]</a>    <span class="k">def</span> <span class="nf">get_grid</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Returns the maze grid.</span>
+<span class="sd">        Retrieve the maze grid.</span>
 
-<span class="sd">        Returns:</span>
-<span class="sd">            list: The maze grid.</span>
+<span class="sd">        :return: The maze grid.</span>
+<span class="sd">        :rtype: list</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">grid</span></div>
 
@@ -283,17 +284,17 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns the solution to the maze as a list of tuples.</span>
 
-<span class="sd">        Returns:</span>
-<span class="sd">            list: The solution to the maze.</span>
+<span class="sd">        :return: The solution to the maze.</span>
+<span class="sd">        :rtype: list</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">solution</span></div>
 
 <div class="viewcode-block" id="WilsonMazeGenerator.show_solution"><a class="viewcode-back" href="../../../api/utils.html#maze_world.utils.WilsonMazeGenerator.show_solution">[docs]</a>    <span class="k">def</span> <span class="nf">show_solution</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">show</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Sets whether the `__str__()` method outputs the solution or not.</span>
+<span class="sd">        Sets whether the __str__() method outputs the solution or not.</span>
 
-<span class="sd">        Args:</span>
-<span class="sd">            show (bool): Boolean value indicating whether to show the solution or not.</span>
+<span class="sd">        :param show: Boolean value indicating whether to show the solution or not.</span>
+<span class="sd">        :type show: bool</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">showSolution</span> <span class="o">=</span> <span class="n">show</span></div>
 
@@ -302,17 +303,16 @@
 <span class="sd">        Generates the maze according to the Wilson Loop Erased Random Walk Algorithm.</span>
 
 <span class="sd">        The algorithm works as follows:</span>
-<span class="sd">        1. Reset the grid before generation.</span>
-<span class="sd">        2. Choose the first cell to put in the visited list.</span>
-<span class="sd">        3. Loop until all cells have been visited:</span>
-<span class="sd">            a. Choose a random cell to start the walk.</span>
-<span class="sd">            b. Loop until the random walk reaches a visited cell.</span>
-<span class="sd">            c. Loop until the end of the path is reached:</span>
-<span class="sd">                - Add the cell to visited and cut into the maze.</span>
-<span class="sd">                - Follow the direction to the next cell.</span>
+<span class="sd">            1. Reset the grid before generation.</span>
+<span class="sd">            2. Choose the first cell to put in the visited list.</span>
+<span class="sd">            3. Loop until all cells have been visited:</span>
+<span class="sd">                a. Choose a random cell to start the walk.</span>
+<span class="sd">                b. Loop until the random walk reaches a visited cell.</span>
+<span class="sd">                c. Loop until the end of the path is reached:</span>
+<span class="sd">                    - Add the cell to visited and cut into the maze.</span>
+<span class="sd">                    - Follow the direction to the next cell.</span>
 
-<span class="sd">        Returns:</span>
-<span class="sd">            None</span>
+<span class="sd">        :return: None</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># reset the grid before generation</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__initialize_grid</span><span class="p">()</span>
@@ -365,8 +365,7 @@
 <div class="viewcode-block" id="WilsonMazeGenerator.solve_maze"><a class="viewcode-back" href="../../../api/utils.html#maze_world.utils.WilsonMazeGenerator.solve_maze">[docs]</a>    <span class="k">def</span> <span class="nf">solve_maze</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Solves the maze according to the Wilson Loop Erased Random Walk Algorithm</span>
 
-<span class="sd">        Returns:</span>
-<span class="sd">            None</span>
+<span class="sd">        :return: None</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># if there is no maze to solve, cut the method</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">generated</span><span class="p">:</span>
@@ -438,8 +437,7 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Resets the maze grid to blank before generating a maze.</span>
 
-<span class="sd">        Returns:</span>
-<span class="sd">            None</span>
+<span class="sd">        :return: None</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">height</span><span class="p">):</span>
             <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">width</span><span class="p">):</span>
@@ -457,13 +455,10 @@
 
     <span class="k">def</span> <span class="nf">_cut</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cell</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Sets the value of the grid at the specified location to 1, representing a cut.</span>
+<span class="sd">        Sets the value of the grid at the specified location to 1, indicating a cut.</span>
 
-<span class="sd">        Args:</span>
-<span class="sd">            cell (tuple): Tuple (y, x) representing the location of where to cut.</span>
-
-<span class="sd">        Returns:</span>
-<span class="sd">            None</span>
+<span class="sd">        :param tuple cell: A tuple (y, x) representing the location where the cut should occur.</span>
+<span class="sd">        :return: None</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="p">[</span><span class="n">cell</span><span class="p">[</span><span class="mi">0</span><span class="p">]][</span><span class="n">cell</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span> <span class="o">=</span> <span class="mi">1</span></div>
 

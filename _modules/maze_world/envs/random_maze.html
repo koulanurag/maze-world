@@ -210,7 +210,11 @@
 
 
 <div class="viewcode-block" id="RandomMazeEnv"><a class="viewcode-back" href="../../../api/environment.html#maze_world.envs.RandomMazeEnv">[docs]</a><span class="k">class</span> <span class="nc">RandomMazeEnv</span><span class="p">(</span><span class="n">MazeEnv</span><span class="p">):</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Extends the MazeEnv class to create random mazes of specified sizes at each reset.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Extends the MazeEnv class to create random mazes of specified sizes at each reset.</span>
+
+<span class="sd">    :example:</span>
+<span class="sd">        &gt;&gt;&gt; env = RandomMazeEnv(maze_width=5,maze_height=7)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="RandomMazeEnv.__init__"><a class="viewcode-back" href="../../../api/environment.html#maze_world.envs.RandomMazeEnv.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
@@ -219,19 +223,18 @@
         <span class="n">maze_height</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">11</span><span class="p">,</span>
     <span class="p">):</span>
 <span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        :param render_mode: specify one of the following:</span>
+<span class="sd">        :param render_mode: Specify one of the following:</span>
 
-<span class="sd">            - None (default): no render is computed.</span>
-<span class="sd">            - “human”: The environment is continuously rendered in the current display or terminal, usually for human consumption. This rendering should occur during step() and render() doesn’t need to be called. Returns None.</span>
-<span class="sd">            - “rgb_array”: Return a single frame representing the current state of the environment. A frame is a np.ndarray with shape (x, y, 3) representing RGB values for an x-by-y pixel image.</span>
-<span class="sd">            - “ansi”: Return a strings (str) or StringIO.StringIO containing a terminal-style text representation for each time step. The text can include newlines and ANSI escape sequences (e.g. for colors).</span>
-<span class="sd">            - “rgb_array_list” and “ansi_list”: List based version of render modes are possible (except Human) through the wrapper, gymnasium.wrappers.RenderCollection that is automatically applied during gymnasium.make(...,render_mode=&quot;rgb_array_list&quot;). The frames collected are popped after render() is called or reset().</span>
+<span class="sd">            - None (default): No render is computed.</span>
+<span class="sd">            - &quot;human&quot;: The environment is continuously rendered in the current display or terminal, usually for human consumption. This rendering should occur during step() and render() doesn’t need to be called. Returns None.</span>
+<span class="sd">            - &quot;rgb_array&quot;: Return a single frame representing the current state of the environment. A frame is a np.ndarray with shape (x, y, 3) representing RGB values for an x-by-y pixel image.</span>
+<span class="sd">            - &quot;ansi&quot;: Return a strings (str) or StringIO.StringIO containing a terminal-style text representation for each time step. The text can include newlines and ANSI escape sequences (e.g. for colors).</span>
+<span class="sd">            - &quot;rgb_array_list&quot; and &quot;ansi_list&quot;: List based version of render modes are possible (except Human) through the wrapper, gymnasium.wrappers.RenderCollection that is automatically applied during gymnasium.make(...,render_mode=&quot;rgb_array_list&quot;). The frames collected are popped after render() is called or reset().</span>
 
-<span class="sd">        :param maze_width: The width of the maze</span>
-<span class="sd">        :param maze_height:  The height of the maze</span>
+<span class="sd">        :param maze_width: The width of the maze.</span>
+<span class="sd">        :param maze_height: The height of the maze.</span>
 
-<span class="sd">        Raises:</span>
-<span class="sd">            ValueError: If the width or height of the maze is not odd.</span>
+<span class="sd">        :raises ValueError: If the width or height of the maze is not odd.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">maze_width</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">maze_height</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;width/height of maze should be odd&quot;</span><span class="p">)</span>
@@ -243,8 +246,8 @@
 <span class="w">            </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">            Generates a random internal maze configuration.</span>
 
-<span class="sd">            Returns:</span>
-<span class="sd">                tuple: A tuple containing the maze configuration, agent location, and target location.</span>
+<span class="sd">            :return: A tuple containing the maze configuration, agent location, and target location.</span>
+<span class="sd">            :rtype: tuple</span>
 <span class="sd">            &quot;&quot;&quot;</span>
 
             <span class="c1"># generate internal maze( other than outside wall area)</span>

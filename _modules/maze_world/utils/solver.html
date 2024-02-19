@@ -267,15 +267,38 @@
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Solves a maze using Dijkstra&#39;s algorithm.</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        impassable_array (array_like): Array representing impassable cells in the maze.</span>
-<span class="sd">        motions (array_like): List of possible motions in the maze.</span>
-<span class="sd">        start_idx (tuple): Initial position of the agent (x, y).</span>
-<span class="sd">        goal_idx (tuple): Position of the goal cell (x, y).</span>
+<span class="sd">    :param impassable_array: Array representing impassable cells in the maze.</span>
+<span class="sd">    :type impassable_array: array_like</span>
+<span class="sd">    :param motions: List of possible motions in the maze.</span>
+<span class="sd">    :type motions: array_like</span>
+<span class="sd">    :param start_idx: Initial position of the agent (x, y).</span>
+<span class="sd">    :type start_idx: tuple</span>
+<span class="sd">    :param goal_idx: Position of the goal cell (x, y).</span>
+<span class="sd">    :type goal_idx: tuple</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        list: List of actions to reach the goal from the start position.</span>
+<span class="sd">    :return: List of actions to reach the goal from the start position.</span>
+<span class="sd">    :rtype: list</span>
 
+<span class="sd">    :example:</span>
+<span class="sd">        &gt;&gt;&gt; import gymnasium as gym</span>
+<span class="sd">        &gt;&gt;&gt; env = gym.make(&quot;maze_world:RandomMaze-11x11-v0&quot;)</span>
+<span class="sd">        &gt;&gt;&gt; observation, info = env.reset(seed=0, options={})</span>
+<span class="sd">        &gt;&gt;&gt; episode_score = 0.0</span>
+<span class="sd">        &gt;&gt;&gt;</span>
+<span class="sd">        &gt;&gt;&gt; optimal_actions = maze_dijkstra_solver(</span>
+<span class="sd">        &gt;&gt;&gt;     env.unwrapped.maze_map.astype(bool),</span>
+<span class="sd">        &gt;&gt;&gt;     env.unwrapped._action_to_direction.values(),</span>
+<span class="sd">        &gt;&gt;&gt;     info[&quot;agent&quot;],</span>
+<span class="sd">        &gt;&gt;&gt;     info[&quot;target&quot;],</span>
+<span class="sd">        &gt;&gt;&gt; )</span>
+<span class="sd">        &gt;&gt;&gt; for action in optimal_actions:</span>
+<span class="sd">        &gt;&gt;&gt;     observation, reward, terminated, truncated, info = env.step(action)</span>
+<span class="sd">        &gt;&gt;&gt;     episode_score += reward</span>
+<span class="sd">        &gt;&gt;&gt;     if terminated or truncated:</span>
+<span class="sd">        &gt;&gt;&gt;         break</span>
+<span class="sd">        &gt;&gt;&gt; env.close()</span>
+<span class="sd">        &gt;&gt;&gt; print(&quot;Success&quot; if all(info[&quot;agent&quot;] == info[&quot;target&quot;]) else &quot;Failure&quot;)</span>
+<span class="sd">        Success</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">impassable_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">impassable_array</span><span class="p">)</span>
     <span class="k">assert</span> <span class="n">impassable_array</span><span class="o">.</span><span class="n">dtype</span> <span class="o">==</span> <span class="nb">bool</span>

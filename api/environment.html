@@ -232,34 +232,34 @@
 <dd><p>The main Maze Environment class for implementing different maze environments</p>
 <p>The class encapsulates maze environments with arbitrary behind-the-scenes dynamics
 through the <a class="reference internal" href="#maze_world.envs.MazeEnv.step" title="maze_world.envs.MazeEnv.step"><code class="xref py py-meth docutils literal notranslate"><span class="pre">step()</span></code></a> and <a class="reference internal" href="#maze_world.envs.MazeEnv.reset" title="maze_world.envs.MazeEnv.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a> functions.</p>
-<p>The main API methods that users of this class need to know are:</p>
-<ul class="simple">
-<li><p><a class="reference internal" href="#maze_world.envs.MazeEnv.step" title="maze_world.envs.MazeEnv.step"><code class="xref py py-meth docutils literal notranslate"><span class="pre">step()</span></code></a> - Updates an environment with actions returning the next agent observation, the reward for taking that actions, if the environment has terminated or truncated due to the latest action and information from the environment about the step, i.e. metrics, debug info.</p></li>
-<li><p><a class="reference internal" href="#maze_world.envs.MazeEnv.reset" title="maze_world.envs.MazeEnv.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a> - Resets the environment to an initial state, required before calling step.
-Returns the first agent observation for an episode and information, i.e. metrics, debug info.</p></li>
-<li><p><a class="reference internal" href="#maze_world.envs.MazeEnv.render" title="maze_world.envs.MazeEnv.render"><code class="xref py py-meth docutils literal notranslate"><span class="pre">render()</span></code></a> - Renders the environments to help visualise what the agent see, examples modes are “human”, “rgb_array”, “ansi” for text.</p></li>
-<li><p><a class="reference internal" href="#maze_world.envs.MazeEnv.close" title="maze_world.envs.MazeEnv.close"><code class="xref py py-meth docutils literal notranslate"><span class="pre">close()</span></code></a> - Closes the environment, important when external software is used, i.e. pygame for rendering, databases</p></li>
-</ul>
-<p>Environments have additional attributes for users to understand the implementation</p>
-<ul class="simple">
-<li><p><a class="reference internal" href="#maze_world.envs.MazeEnv.action_space" title="maze_world.envs.MazeEnv.action_space"><code class="xref py py-attr docutils literal notranslate"><span class="pre">action_space</span></code></a> - The Space object corresponding to valid actions, all valid actions should be contained within the space.</p></li>
-<li><p><a class="reference internal" href="#maze_world.envs.MazeEnv.observation_space" title="maze_world.envs.MazeEnv.observation_space"><code class="xref py py-attr docutils literal notranslate"><span class="pre">observation_space</span></code></a> - The Space object corresponding to valid observations, all valid observations should be contained within the space.</p></li>
-<li><p><code class="xref py py-attr docutils literal notranslate"><span class="pre">reward_range</span></code> - A tuple corresponding to the minimum and maximum possible rewards for an agent over an episode. The default reward range is set to <span class="math">\((-\infty,+\infty)\)</span>.</p></li>
-<li><p><code class="xref py py-attr docutils literal notranslate"><span class="pre">spec</span></code> - An environment spec that contains the information used to initialize the environment from <code class="xref py py-meth docutils literal notranslate"><span class="pre">gymnasium.make()</span></code></p></li>
-<li><p><a class="reference internal" href="#maze_world.envs.MazeEnv.metadata" title="maze_world.envs.MazeEnv.metadata"><code class="xref py py-attr docutils literal notranslate"><span class="pre">metadata</span></code></a> - The metadata of the environment, i.e. render modes, render fps</p></li>
-<li><p><code class="xref py py-attr docutils literal notranslate"><span class="pre">np_random</span></code> - The random number generator for the environment. This is automatically assigned during <code class="docutils literal notranslate"><span class="pre">super().reset(seed=seed)</span></code> and when assessing <code class="docutils literal notranslate"><span class="pre">self.np_random</span></code>.</p></li>
-</ul>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>To get reproducible sampling of actions, a seed can be set with <code class="docutils literal notranslate"><span class="pre">env.action_space.seed(123)</span></code>.</p>
+<dl class="field-list">
+<dt class="field-odd">Example<span class="colon">:</span></dt>
+<dd class="field-odd"><div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">gymnasium</span> <span class="k">as</span> <span class="nn">gym</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">generate_maze_fn</span><span class="p">():</span>
+<span class="gp">... </span>    <span class="n">maze_map</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+<span class="gp">... </span>        <span class="p">[</span>
+<span class="gp">... </span>            <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+<span class="gp">... </span>            <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+<span class="gp">... </span>            <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+<span class="gp">... </span>            <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+<span class="gp">... </span>            <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+<span class="gp">... </span>        <span class="p">]</span>
+<span class="gp">... </span>    <span class="p">)</span>
+<span class="gp">... </span>    <span class="n">agent_loc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="gp">... </span>    <span class="n">target_loc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+<span class="gp">... </span>    <span class="k">return</span> <span class="n">maze_map</span><span class="p">,</span> <span class="n">agent_loc</span><span class="p">,</span> <span class="n">target_loc</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">env</span> <span class="o">=</span> <span class="n">MazeEnv</span><span class="p">(</span><span class="n">generate_maze_fn</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
+</pre></div>
 </div>
+</dd>
+</dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="maze_world.envs.MazeEnv.__init__">
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">generate_maze_fn</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">render_mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maze_width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maze_height</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/maze_world/envs/maze.html#MazeEnv.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#maze_world.envs.MazeEnv.__init__" title="Permalink to this definition">#</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>generate_maze_fn</strong> (<em>callable</em>) – <p>This function is called during every reset of the environment and is expected to three items in following order:</p>
+<li><p><strong>generate_maze_fn</strong> (<em>callable</em>) – <p>This function is called during every reset of the environment and is expected to return three items in following order:</p>
 <ul>
 <li><p>maze-map:  numpy array of  map where “1” represents wall and “0” represents floor.</p></li>
 <li><p>agent location: tuple (x,y) where x and y represent location  of agent</p></li>
@@ -285,7 +285,7 @@ Returns the first agent observation for an episode and information, i.e. metrics
 <dl class="py property">
 <dt class="sig sig-object py" id="maze_world.envs.MazeEnv.action_space">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">action_space</span></span><a class="headerlink" href="#maze_world.envs.MazeEnv.action_space" title="Permalink to this definition">#</a></dt>
-<dd><p>“right”, “up”, “left”, “down”.</p>
+<dd><p>[“right”, “up”, “left”, “down”].</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>Discrete action space object representing the possible actions.</p>
@@ -294,7 +294,7 @@ Returns the first agent observation for an episode and information, i.e. metrics
 <dd class="field-even"><p>gym.spaces.Discrete</p>
 </dd>
 <dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Returns a discrete action space with 4 actions</p>
+<dd class="field-odd"><p>Actions available corresponding to each index</p>
 </dd>
 </dl>
 </dd></dl>
@@ -314,8 +314,8 @@ Returns the first agent observation for an episode and information, i.e. metrics
 <dl class="py property">
 <dt class="sig sig-object py" id="maze_world.envs.MazeEnv.observation_space">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">observation_space</span></span><a class="headerlink" href="#maze_world.envs.MazeEnv.observation_space" title="Permalink to this definition">#</a></dt>
-<dd><p>Returns a dictionary defining the observation space of the 2D maze environment.</p>
-<p>The observation space includes two elements:
+<dd><p>Defines the observation space of the 2D maze environment.</p>
+<p>The observation space consists of two elements:
 - ‘agent’: Represents the position of the agent in the maze.
 - ‘target’: Represents the position of the target in the maze.</p>
 <dl class="simple">
@@ -328,14 +328,9 @@ Returns the first agent observation for an episode and information, i.e. metrics
 </dl>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p><dl class="simple">
-<dt>Dictionary containing the observation space for the agent and the target.</dt><dd><ul class="simple">
-<li><p>’agent’: gym.spaces.Box object representing the agent’s position.</p></li>
-<li><p>’target’: gym.spaces.Box object representing the target’s position.</p></li>
-</ul>
-</dd>
-</dl>
-</p>
+<dd class="field-odd"><p>Dictionary containing the observation space for the agent and the target.
+- ‘agent’: gym.spaces.Box object representing the agent’s position.
+- ‘target’: gym.spaces.Box object representing the target’s position.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>gym.spaces.Dict</p>
@@ -385,16 +380,19 @@ in the environment initialised, i.e., <code class="docutils literal notranslate"
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>seed</strong> (<em>int</em><em>, </em><em>optional</em>) – Seed for the random number generator. Defaults to None.</p></li>
-<li><p><strong>options</strong> (<em>None</em>) – Unused parameter.</p></li>
+<li><p><strong>seed</strong> (<em>Optional</em><em>[</em><em>int</em><em>]</em>) – Seed for the random number generator. Defaults to None.</p></li>
+<li><p><strong>options</strong> – Unused parameter.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>Agent’s observation of the initial environment state.
-info (dict): Additional information about the environment.</p>
+<dd class="field-even"><p><ul class="simple">
+<li><p>observation: Agent’s observation of the initial environment state.</p></li>
+<li><p>info (dict): Additional information about the environment.</p></li>
+</ul>
+</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>observation</p>
+<dd class="field-odd"><p>tuple</p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>ValueError</strong> – If the shape of the maze generated by generate_maze_fn() doesn’t match the specified maze width and height.</p>
@@ -411,14 +409,15 @@ info (dict): Additional information about the environment.</p>
 <dd class="field-odd"><p><strong>action</strong> (<em>int</em>) – The action to take.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>Agent’s observation of the current environment.
-reward (float): Reward received after taking the step.
-terminated (bool): Whether the episode has terminated or not.
-truncated (bool): Whether the episode has been truncated due to max episode steps.
-info (dict): Additional information about the step.</p>
+<dd class="field-even"><p>A tuple containing:
+- observation: Agent’s current observation of the environment.
+- reward (float): Reward received after taking the step.
+- terminated (bool): Whether the episode has terminated or not.
+- truncated (bool): Whether the episode has been truncated due to max episode steps.
+- info (dict): Additional information about the step.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>observation</p>
+<dd class="field-odd"><p>tuple</p>
 </dd>
 </dl>
 </dd></dl>
@@ -429,23 +428,30 @@ info (dict): Additional information about the step.</p>
 <dt class="sig sig-object py" id="maze_world.envs.RandomMazeEnv">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">maze_world.envs.</span></span><span class="sig-name descname"><span class="pre">RandomMazeEnv</span></span><a class="reference internal" href="../_modules/maze_world/envs/random_maze.html#RandomMazeEnv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#maze_world.envs.RandomMazeEnv" title="Permalink to this definition">#</a></dt>
 <dd><p>Extends the MazeEnv class to create random mazes of specified sizes at each reset.</p>
+<dl class="field-list">
+<dt class="field-odd">Example<span class="colon">:</span></dt>
+<dd class="field-odd"><div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">env</span> <span class="o">=</span> <span class="n">RandomMazeEnv</span><span class="p">(</span><span class="n">maze_width</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="n">maze_height</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd>
+</dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="maze_world.envs.RandomMazeEnv.__init__">
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">render_mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maze_width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">11</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maze_height</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">11</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/maze_world/envs/random_maze.html#RandomMazeEnv.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#maze_world.envs.RandomMazeEnv.__init__" title="Permalink to this definition">#</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>render_mode</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – <p>specify one of the following:</p>
+<li><p><strong>render_mode</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – <p>Specify one of the following:</p>
 <ul>
-<li><p>None (default): no render is computed.</p></li>
-<li><p>“human”: The environment is continuously rendered in the current display or terminal, usually for human consumption. This rendering should occur during step() and render() doesn’t need to be called. Returns None.</p></li>
-<li><p>“rgb_array”: Return a single frame representing the current state of the environment. A frame is a np.ndarray with shape (x, y, 3) representing RGB values for an x-by-y pixel image.</p></li>
-<li><p>“ansi”: Return a strings (str) or StringIO.StringIO containing a terminal-style text representation for each time step. The text can include newlines and ANSI escape sequences (e.g. for colors).</p></li>
-<li><p>“rgb_array_list” and “ansi_list”: List based version of render modes are possible (except Human) through the wrapper, gymnasium.wrappers.RenderCollection that is automatically applied during gymnasium.make(…,render_mode=”rgb_array_list”). The frames collected are popped after render() is called or reset().</p></li>
+<li><p>None (default): No render is computed.</p></li>
+<li><p>”human”: The environment is continuously rendered in the current display or terminal, usually for human consumption. This rendering should occur during step() and render() doesn’t need to be called. Returns None.</p></li>
+<li><p>”rgb_array”: Return a single frame representing the current state of the environment. A frame is a np.ndarray with shape (x, y, 3) representing RGB values for an x-by-y pixel image.</p></li>
+<li><p>”ansi”: Return a strings (str) or StringIO.StringIO containing a terminal-style text representation for each time step. The text can include newlines and ANSI escape sequences (e.g. for colors).</p></li>
+<li><p>”rgb_array_list” and “ansi_list”: List based version of render modes are possible (except Human) through the wrapper, gymnasium.wrappers.RenderCollection that is automatically applied during gymnasium.make(…,render_mode=”rgb_array_list”). The frames collected are popped after render() is called or reset().</p></li>
 </ul>
 </p></li>
-<li><p><strong>maze_width</strong> (<em>int</em>) – The width of the maze</p></li>
-<li><p><strong>maze_height</strong> (<em>int</em>) – The height of the maze</p></li>
+<li><p><strong>maze_width</strong> (<em>int</em>) – The width of the maze.</p></li>
+<li><p><strong>maze_height</strong> (<em>int</em>) – The height of the maze.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>

@@ -217,25 +217,23 @@
 <span class="sd">    The class encapsulates maze environments with arbitrary behind-the-scenes dynamics</span>
 <span class="sd">    through the :meth:`step` and :meth:`reset` functions.</span>
 
-<span class="sd">    The main API methods that users of this class need to know are:</span>
+<span class="sd">    :example:</span>
+<span class="sd">        &gt;&gt;&gt; import gymnasium as gym</span>
+<span class="sd">        &gt;&gt;&gt; def generate_maze_fn():</span>
+<span class="sd">        ...     maze_map = np.array(</span>
+<span class="sd">        ...         [</span>
+<span class="sd">        ...             [1, 1, 1, 1, 1, 1, 1],</span>
+<span class="sd">        ...             [1, 0, 0, 0, 0, 0, 1],</span>
+<span class="sd">        ...             [1, 0, 0, 0, 0, 0, 1],</span>
+<span class="sd">        ...             [1, 0, 0, 0, 0, 0, 1],</span>
+<span class="sd">        ...             [1, 1, 1, 1, 1, 1, 1],</span>
+<span class="sd">        ...         ]</span>
+<span class="sd">        ...     )</span>
+<span class="sd">        ...     agent_loc = np.array([1, 1])</span>
+<span class="sd">        ...     target_loc = np.array([3, 5])</span>
+<span class="sd">        ...     return maze_map, agent_loc, target_loc</span>
+<span class="sd">        &gt;&gt;&gt; env = MazeEnv(generate_maze_fn, None, 5, 7)</span>
 
-<span class="sd">    - :meth:`step` - Updates an environment with actions returning the next agent observation, the reward for taking that actions, if the environment has terminated or truncated due to the latest action and information from the environment about the step, i.e. metrics, debug info.</span>
-<span class="sd">    - :meth:`reset` - Resets the environment to an initial state, required before calling step.</span>
-<span class="sd">      Returns the first agent observation for an episode and information, i.e. metrics, debug info.</span>
-<span class="sd">    - :meth:`render` - Renders the environments to help visualise what the agent see, examples modes are &quot;human&quot;, &quot;rgb_array&quot;, &quot;ansi&quot; for text.</span>
-<span class="sd">    - :meth:`close` - Closes the environment, important when external software is used, i.e. pygame for rendering, databases</span>
-
-<span class="sd">    Environments have additional attributes for users to understand the implementation</span>
-
-<span class="sd">    - :attr:`action_space` - The Space object corresponding to valid actions, all valid actions should be contained within the space.</span>
-<span class="sd">    - :attr:`observation_space` - The Space object corresponding to valid observations, all valid observations should be contained within the space.</span>
-<span class="sd">    - :attr:`reward_range` - A tuple corresponding to the minimum and maximum possible rewards for an agent over an episode. The default reward range is set to :math:`(-\infty,+\infty)`.</span>
-<span class="sd">    - :attr:`spec` - An environment spec that contains the information used to initialize the environment from :meth:`gymnasium.make`</span>
-<span class="sd">    - :attr:`metadata` - The metadata of the environment, i.e. render modes, render fps</span>
-<span class="sd">    - :attr:`np_random` - The random number generator for the environment. This is automatically assigned during ``super().reset(seed=seed)`` and when assessing ``self.np_random``.</span>
-
-<span class="sd">    Note:</span>
-<span class="sd">        To get reproducible sampling of actions, a seed can be set with ``env.action_space.seed(123)``.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">metadata</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;render_modes&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;human&quot;</span><span class="p">,</span> <span class="s2">&quot;rgb_array&quot;</span><span class="p">],</span> <span class="s2">&quot;render_fps&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">}</span>
@@ -249,7 +247,7 @@
     <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 
-<span class="sd">        :param generate_maze_fn: This function is called during every reset of the environment and is expected to three items in following order:</span>
+<span class="sd">        :param generate_maze_fn: This function is called during every reset of the environment and is expected to return three items in following order:</span>
 
 <span class="sd">            - maze-map:  numpy array of  map where &quot;1&quot; represents wall and &quot;0&quot; represents floor.</span>
 <span class="sd">            - agent location: tuple (x,y) where x and y represent location  of agent</span>
@@ -307,19 +305,19 @@
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">action_space</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Returns a discrete action space with 4 actions: &quot;right&quot;, &quot;up&quot;, &quot;left&quot;, &quot;down&quot;.</span>
+<span class="sd">        Actions available corresponding to each index: [&quot;right&quot;, &quot;up&quot;, &quot;left&quot;, &quot;down&quot;].</span>
 
-<span class="sd">        Returns:</span>
-<span class="sd">            gym.spaces.Discrete: Discrete action space object representing the possible actions.</span>
+<span class="sd">        :return: Discrete action space object representing the possible actions.</span>
+<span class="sd">        :rtype: gym.spaces.Discrete</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">spaces</span><span class="o">.</span><span class="n">Discrete</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">observation_space</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Returns a dictionary defining the observation space of the 2D maze environment.</span>
+<span class="sd">        Defines the observation space of the 2D maze environment.</span>
 
-<span class="sd">        The observation space includes two elements:</span>
+<span class="sd">        The observation space consists of two elements:</span>
 <span class="sd">        - &#39;agent&#39;: Represents the position of the agent in the maze.</span>
 <span class="sd">        - &#39;target&#39;: Represents the position of the target in the maze.</span>
 
@@ -328,10 +326,11 @@
 <span class="sd">            - 1 corresponds to a wall.</span>
 <span class="sd">            - 2 corresponds to the agent or the target.</span>
 
-<span class="sd">        Returns:</span>
-<span class="sd">            gym.spaces.Dict: Dictionary containing the observation space for the agent and the target.</span>
-<span class="sd">                - &#39;agent&#39;: gym.spaces.Box object representing the agent&#39;s position.</span>
-<span class="sd">                - &#39;target&#39;: gym.spaces.Box object representing the target&#39;s position.</span>
+<span class="sd">        :return: Dictionary containing the observation space for the agent and the target.</span>
+<span class="sd">            - &#39;agent&#39;: gym.spaces.Box object representing the agent&#39;s position.</span>
+<span class="sd">            - &#39;target&#39;: gym.spaces.Box object representing the target&#39;s position.</span>
+
+<span class="sd">        :rtype: gym.spaces.Dict</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">spaces</span><span class="o">.</span><span class="n">Dict</span><span class="p">(</span>
             <span class="p">{</span>
@@ -375,20 +374,18 @@
         <span class="p">}</span>
 
 <div class="viewcode-block" id="MazeEnv.reset"><a class="viewcode-back" href="../../../api/environment.html#maze_world.envs.MazeEnv.reset">[docs]</a>    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">seed</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Resets the environment to its initial state and generates a new random maze configuration.</span>
 
-<span class="sd">        Args:</span>
-<span class="sd">            seed (int, optional): Seed for the random number generator. Defaults to None.</span>
-<span class="sd">            options (None): Unused parameter.</span>
+<span class="sd">        :param seed: Seed for the random number generator. Defaults to None.</span>
+<span class="sd">        :param options: Unused parameter.</span>
 
-<span class="sd">        Returns:</span>
-<span class="sd">            observation: Agent&#39;s observation of the initial environment state.</span>
-<span class="sd">            info (dict): Additional information about the environment.</span>
+<span class="sd">        :return:</span>
+<span class="sd">            - observation: Agent&#39;s observation of the initial environment state.</span>
+<span class="sd">            - info (dict): Additional information about the environment.</span>
+<span class="sd">        :rtype: tuple</span>
 
-<span class="sd">        Raises:</span>
-<span class="sd">            ValueError: If the shape of the maze generated by generate_maze_fn() doesn&#39;t match the specified maze width and height.</span>
-
+<span class="sd">        :raises ValueError: If the shape of the maze generated by generate_maze_fn() doesn&#39;t match the specified maze width and height.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># We need the following line to seed self.np_random</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">reset</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="n">seed</span><span class="p">)</span>
@@ -424,15 +421,16 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Take a step in the environment.</span>
 
-<span class="sd">        Args:</span>
-<span class="sd">            action (int): The action to take.</span>
+<span class="sd">        :param action: The action to take.</span>
+<span class="sd">        :type action: int</span>
 
-<span class="sd">        Returns:</span>
-<span class="sd">            observation: Agent&#39;s observation of the current environment.</span>
-<span class="sd">            reward (float): Reward received after taking the step.</span>
-<span class="sd">            terminated (bool): Whether the episode has terminated or not.</span>
-<span class="sd">            truncated (bool): Whether the episode has been truncated due to max episode steps.</span>
-<span class="sd">            info (dict): Additional information about the step.</span>
+<span class="sd">        :return: A tuple containing:</span>
+<span class="sd">            - observation: Agent&#39;s current observation of the environment.</span>
+<span class="sd">            - reward (float): Reward received after taking the step.</span>
+<span class="sd">            - terminated (bool): Whether the episode has terminated or not.</span>
+<span class="sd">            - truncated (bool): Whether the episode has been truncated due to max episode steps.</span>
+<span class="sd">            - info (dict): Additional information about the step.</span>
+<span class="sd">        :rtype: tuple</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">terminated</span> <span class="o">=</span> <span class="kc">False</span>
 

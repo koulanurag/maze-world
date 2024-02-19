@@ -4,8 +4,10 @@ Random maze environments with different size and complexity for reinforcement le
 
 ![Python package](https://github.com/koulanurag/maze-world/workflows/Python%20package/badge.svg)
 ![Python Version](https://img.shields.io/pypi/pyversions/maze-world)
+[![pages-build-deployment](https://github.com/koulanurag/maze-world/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/koulanurag/maze-world/actions/workflows/pages/pages-build-deployment)
+[![Sphinx: Render docs](https://github.com/koulanurag/maze-world/actions/workflows/sphinx.yml/badge.svg)](https://github.com/koulanurag/maze-world/actions/workflows/sphinx.yml)
+[![Upload Python Package](https://github.com/koulanurag/maze-world/actions/workflows/pypi-publish.yml/badge.svg)](https://github.com/koulanurag/maze-world/actions/workflows/pypi-publish.yml)
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/koulanurag/maze-world/blob/main/examples/colab_example.ipynb)
-
 
 _Disclaimer: This project is largely a amalgam of references mentioned <a href=#references>here</a>._
 

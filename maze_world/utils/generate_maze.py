@@ -6,17 +6,18 @@ import matplotlib.pyplot as plt
 
 class WilsonMazeGenerator:
     """
-    Maze Generator using Wilson's Loop Erased Random Walk Algorithm
+    Maze Generator utilizing Wilson's Loop Erased Random Walk Algorithm.
 
     Source: https://github.com/CaptainFl1nt/WilsonMazeGenerator
     """
 
-    def __init__(self, height, width):
+    def __init__(self, height: int, width: int):
         """
-        WilsonMazeGenerator(int,int) -> WilsonMazeGenerator
-        Creates a maze generator with specified width and height.
-        width: width of generated mazes
-        height: height of generated mazes
+        Initializes a maze generator with the specified width and height.
+
+        Args:
+            height (int): Height of the generated mazes.
+            width (int): Width of the generated mazes.
         """
         self.width = 2 * (width // 2) + 1  # Make width odd
         self.height = 2 * (height // 2) + 1  # Make height odd
@@ -43,8 +44,10 @@ class WilsonMazeGenerator:
 
     def __str__(self):
         """
-        WilsonMazeGenerator.__str__() -> str
-        outputs a string version of the grid
+        Returns a string representation of the maze grid.
+
+        Returns:
+            str: String representation of the grid.
         """
         out = "##" * (self.width + 1) + "\n"
         for i in range(self.height):
@@ -63,34 +66,57 @@ class WilsonMazeGenerator:
         return out + "##" * (self.width + 1)
 
     def get_grid(self):
-        """WilsonMazeGenerator.get_grid() -> list
-        returns the maze grid"""
+        """
+        Returns the maze grid.
+
+        Returns:
+            list: The maze grid.
+        """
         return self.grid
 
     def get_solution(self):
-        """WilsonMazeGenerator.get_solution() -> list
-        Returns the solution to the maze as a list
-        of tuples"""
+        """
+        Returns the solution to the maze as a list of tuples.
+
+        Returns:
+            list: The solution to the maze.
+        """
         return self.solution
 
     def show_solution(self, show):
-        """WilsonMazeGenerator.show_solution(boolean) -> None
-        Set whether WilsonMazeGenerator.__str__() outputs the
-        solution or not"""
+        """
+        Sets whether the `__str__()` method outputs the solution or not.
+
+        Args:
+            show (bool): Boolean value indicating whether to show the solution or not.
+        """
         self.showSolution = show
 
     def generate_maze(self):
-        """WilsonMazeGenerator.generate_maze() -> None
-        Generates the maze according to the Wilson Loop Erased Random
-        Walk Algorithm"""
+        """
+        Generates the maze according to the Wilson Loop Erased Random Walk Algorithm.
+
+        The algorithm works as follows:
+        1. Reset the grid before generation.
+        2. Choose the first cell to put in the visited list.
+        3. Loop until all cells have been visited:
+            a. Choose a random cell to start the walk.
+            b. Loop until the random walk reaches a visited cell.
+            c. Loop until the end of the path is reached:
+                - Add the cell to visited and cut into the maze.
+                - Follow the direction to the next cell.
+
+        Returns:
+            None
+        """
         # reset the grid before generation
-        self.initialize_grid()
+        self.__initialize_grid()
 
         # choose the first cell to put in the visited list
         # see Step 1 of the algorithm.
         current = self.unvisited.pop(random.randint(0, len(self.unvisited) - 1))
         self.visited.append(current)
-        self.cut(current)
+        self._cut(current)
 
         # loop until all cells have been visited
         while len(self.unvisited) > 0:
@@ -102,12 +128,12 @@ class WilsonMazeGenerator:
                 # choose direction to walk (Step 3)
                 dirNum = random.randint(0, 3)
                 # check if direction is valid. If not, choose new direction
-                while not self.is_valid_direction(current, dirNum):
+                while not self.__is_valid_direction(current, dirNum):
                     dirNum = random.randint(0, 3)
                 # save the cell and direction in the path
                 self.path[current] = dirNum
                 # get the next cell in that direction
-                current = self.get_next_cell(current, dirNum, 2)
+                current = self.__get_next_cell(current, dirNum, 2)
                 if current in self.visited:  # visited cell is reached (Step 5)
                     break
 
@@ -117,14 +143,14 @@ class WilsonMazeGenerator:
                 # add cell to visited and cut into the maze
                 self.visited.append(current)
                 self.unvisited.remove(current)  # (Step 6.b)
-                self.cut(current)
+                self._cut(current)
 
                 # follow the direction to next cell (Step 6.a)
                 dirNum = self.path[current]
-                crossed = self.get_next_cell(current, dirNum, 1)
-                self.cut(crossed)  # cut crossed edge
+                crossed = self.__get_next_cell(current, dirNum, 1)
+                self._cut(crossed)  # cut crossed edge
 
-                current = self.get_next_cell(current, dirNum, 2)
+                current = self.__get_next_cell(current, dirNum, 2)
                 if current in self.visited:  # end of path is reached
                     self.path = dict()  # clear the path
                     break
@@ -132,9 +158,11 @@ class WilsonMazeGenerator:
         self.generated = True
 
     def solve_maze(self):
-        """WilsonMazeGenerator.solve_maze() -> None
-        Solves the maze according to the Wilson Loop Erased Random
-        Walk Algorithm"""
+        """Solves the maze according to the Wilson Loop Erased Random Walk Algorithm
+
+        Returns:
+            None
+        """
         # if there is no maze to solve, cut the method
         if not self.generated:
             return None
@@ -150,8 +178,8 @@ class WilsonMazeGenerator:
                 # must remain in the grid
                 # also must not cross a wall
                 dirNum = random.randint(0, 3)
-                adjacent = self.get_next_cell(current, dirNum, 1)
-                if self.is_valid_direction(current, dirNum):
+                adjacent = self.__get_next_cell(current, dirNum, 1)
+                if self.__is_valid_direction(current, dirNum):
                     hasWall = self.grid[adjacent[0]][adjacent[1]] == 0
                     if not hasWall:
                         break
@@ -159,7 +187,7 @@ class WilsonMazeGenerator:
             self.path[current] = dirNum
 
             # get next cell
-            current = self.get_next_cell(current, dirNum, 2)
+            current = self.__get_next_cell(current, dirNum, 2)
             if current == self.end:
                 break  # break if ending cell is reached
 
@@ -170,8 +198,8 @@ class WilsonMazeGenerator:
         while not (current == self.end):
             dirNum = self.path[current]  # get direction
             # add adjacent and crossed cells to solution
-            crossed = self.get_next_cell(current, dirNum, 1)
-            current = self.get_next_cell(current, dirNum, 2)
+            crossed = self.__get_next_cell(current, dirNum, 1)
+            current = self.__get_next_cell(current, dirNum, 2)
             self.solution.append(crossed)
             self.solution.append(current)
 
@@ -180,7 +208,7 @@ class WilsonMazeGenerator:
     ## Private Methods ##
     ## Do Not Use Outside This Class ##
 
-    def get_next_cell(self, cell, dirNum, fact):
+    def __get_next_cell(self, cell, dirNum, fact):
         """WilsonMazeGenerator.get_next_cell(tuple,int,int) -> tuple
         Outputs the next cell when moved a distance fact in the the
         direction specified by dirNum from the initial cell.
@@ -190,21 +218,23 @@ class WilsonMazeGenerator:
         dirTup = self.directions[dirNum]
         return (cell[0] + fact * dirTup[0], cell[1] + fact * dirTup[1])
 
-    def is_valid_direction(self, cell, dirNum):
+    def __is_valid_direction(self, cell, dirNum):
         """WilsonMazeGenerator(tuple,int) -> boolean
         Checks if the adjacent cell in the direction specified by
         dirNum is within the grid
         cell: tuple (y,x) representing position of initial cell
         dirNum: int with values 0,1,2,3"""
-        newCell = self.get_next_cell(cell, dirNum, 2)
+        newCell = self.__get_next_cell(cell, dirNum, 2)
         tooSmall = newCell[0] < 0 or newCell[1] < 0
         tooBig = newCell[0] >= self.height or newCell[1] >= self.width
         return not (tooSmall or tooBig)
 
-    def initialize_grid(self):
+    def __initialize_grid(self):
         """
-        WilsonMazeGenerator.initialize_grid() -> None
         Resets the maze grid to blank before generating a maze.
+
+        Returns:
+            None
         """
         for i in range(self.height):
             for j in range(self.width):
@@ -220,11 +250,16 @@ class WilsonMazeGenerator:
         self.path = dict()
         self.generated = False
 
-    def cut(self, cell):
-        """WilsonMazeGenerator.cut(tuple) -> None
-        Sets the value of the grid at the location specified by cell
-        to 1
-        cell: tuple (y,x) location of where to cut"""
+    def _cut(self, cell):
+        """
+        Sets the value of the grid at the specified location to 1, representing a cut.
+
+        Args:
+            cell (tuple): Tuple (y, x) representing the location of where to cut.
+
+        Returns:
+            None
+        """
         self.grid[cell[0]][cell[1]] = 1
 
 

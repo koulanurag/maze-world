@@ -70,7 +70,7 @@ See entire quick-start guide [here](https://koulanurag.dev/maze-world/quick-star
 ## Testing:
 
 - Install: ```pip install -e ".[test]" ```
-- Run: ```pytest```
+- Run: ```pytest -v --xdoc --cov=./ --cov-report=xml```
 
 ## Development:
 

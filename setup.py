@@ -45,10 +45,8 @@ setup(
     install_requires=["gymnasium>=0.28", "pygame>=2.1.0", "scipy", "matplotlib"],
     extras_require=extras,
     tests_require=extras["test"],
-    python_requires=">=3.6, <3.12",
+    python_requires=">=3.8, <3.12",
     classifiers=[
-        "Programming Language :: Python :: 3.6",
-        "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
